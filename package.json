@@ -1,0 +1,60 @@
+{
+  "version": "0.0.1",
+
+  "name": "testresources",
+  "description": "Adds some conventions to supertest to make testing HTTP APIs quicker.",
+  "main": "index",
+
+  "preferGlobal": false,
+
+  "author": {
+    "name": "Colin Jack"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colin-jack/testresources.git"
+  },
+
+  "dependencies": {
+    "supertest": "*",
+    "objectcompare" : "*",
+    "async": "*",
+    "underscore": "*",
+    "require-namespace": "*",
+    "rules" : "*"
+  },
+
+  "keywords": [
+    "REST",
+    "RESTful",
+    "express",
+    "superagent",
+    "request",
+    "supertest",
+    "tdd",
+    "bdd",
+    "http",
+    "test",
+    "testing",
+    "resource oriented",
+    "ROA"
+  ],
+
+  "devDependencies": {
+    "longjohn": "*",
+    "chai": "*",
+    "mocha": "*"
+  },
+
+  "_npmUser": {
+    "name": "colin_jack",
+    "email": "colin.jack@gmail.com"
+  },
+
+  "license": "MIT",
+  
+  "engines": {
+    "node": ">=0.6"
+  }
+}
