@@ -4,10 +4,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     coffee: {
       app: {
-        src: ['lib/coffee/*.coffee'],
+        src: ['coffee/**/*.coffee'],
         dest: 'lib/',
         options: {
-            preserve_dirs: true
+            preserve_dirs: true,
+            base_path: 'coffee'
         }
       },
     }
