@@ -11,6 +11,10 @@ module.exports = function(grunt) {
             base_path: 'coffee'
         }
       },
+    },
+
+    watch: {
+      files: 'lib/',
     }
   });
 
