@@ -3,8 +3,9 @@ var entryPoint;
 entryPoint = lib.require('entryPoint');
 
 describe('when you get the entry point', function() {
+  var underTest;
+  underTest = null;
   beforeEach(function() {
-    var underTest;
     return underTest = entryPoint({});
   });
   return it('should have expected functions', function() {
