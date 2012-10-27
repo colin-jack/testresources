@@ -45,6 +45,7 @@
     "longjohn": "*",
     "chai": "*",
     "mocha": "*",
+    "sinon": "*",
     "coffee-script" : "*",
     "grunt-coffee": "*",
     "grunt": "*"
