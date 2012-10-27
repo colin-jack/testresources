@@ -44,7 +44,10 @@
   "devDependencies": {
     "longjohn": "*",
     "chai": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "coffee-script" : "*",
+    "grunt-coffee": "*",
+    "grunt": "*"
   },
 
   "_npmUser": {
