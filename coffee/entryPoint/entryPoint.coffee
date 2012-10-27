@@ -1,3 +1,2 @@
 module.exports = (app) ->
-    getJSON : require('./getJSON')
-
+  {  getJSON : require('./getJSON') }

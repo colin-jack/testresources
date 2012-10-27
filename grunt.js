@@ -14,18 +14,10 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: 'lib/',
+      files: '<config:coffee.app.src>',
     }
   });
 
   // Load tasks from "grunt-sample" grunt plugin installed via Npm.
   grunt.loadNpmTasks('grunt-coffee');
-
-  // Default task.
-  //grunt.registerTask('default', 'grunt-coffee');
-
-
-  // Default task.
-  //grunt.registerTask('default', 'lint sample');
-
 };
