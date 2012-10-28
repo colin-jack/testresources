@@ -1,12 +1,12 @@
 module.exports = (superTest) ->
+  # TODO: returned object should have super test methods merged in.
+
   return {
     get : (url) ->
-      superTest.get(url)
-        .expect('Content-Type', 'text/json')
-        .expect(200)
+      getChain = superTest.get(url).expect('Content-Type', 'text/json')
       
       return {
         expectBody : (body) ->
-          console.log("here")
+          getChain.expect(200, body)
       }
   }
