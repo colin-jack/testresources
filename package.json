@@ -1,5 +1,5 @@
 {
-  "version": "0.0.72",
+  "version": "0.0.73",
 
   "name": "testresources",
   "description": "Adds some conventions to supertest to make testing HTTP APIs quicker.",
