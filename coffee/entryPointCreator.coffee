@@ -1,9 +1,8 @@
-module.exports = (superTest) ->
-  # TODO: returned object should have super test methods merged in.
-
+# TODO: returned object should have super test methods merged in.
+module.exports = (wrappedSuperTest) ->
   return {
     get : (url) ->
-      getChain = superTest.get(url).expect('Content-Type', 'text/json')
+      getChain = wrappedSuperTest.get(url).expect('Content-Type', 'text/json') 
       
       return {
         expectBody : (body) ->

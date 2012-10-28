@@ -1,5 +1,8 @@
-// pass that into entryPoint
+var entryPointCreator = require('./lib/entryPointCreator');
 var supertest = require('supertest')
-var entryPointCreator = require('./lib/entryPointCreator')
 
-module.exports = entryPointCreator(supertest);
+module.exports = function(express)  {
+  wrapped = supertest(express)
+
+  return entryPointCreator(wrapped)
+}

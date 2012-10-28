@@ -17,6 +17,9 @@ module.exports = function() {
     },
     expect: function() {
       return this;
+    },
+    address: function() {
+      return "foo.com";
     }
   };
   getSpy = sinon.spy(fakeSuperTest, "get");

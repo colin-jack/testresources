@@ -14,6 +14,8 @@ module.exports = () ->
       @
     expect: () ->
       @
+    address: () ->
+      "foo.com"
 
   getSpy = sinon.spy(fakeSuperTest, "get")
   expectSpy = sinon.spy(fakeSuperTest, "expect")
