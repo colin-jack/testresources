@@ -1,6 +1,14 @@
 sinon = require('sinon')
 
 module.exports = () ->
+  assertExpectCalledWith = (key, value) ->
+    assert expectSpy.calledWith(key, value)
+
+  assertFirstCalledWithValueMatching = (key, regex) ->
+    assert.equal expectSpy.firstCall.args[0], key
+    assert.match expectSpy.firstCall.args[1], regex
+
+
   fakeSuperTest =
     get : () -> 
       @
@@ -12,6 +20,8 @@ module.exports = () ->
 
   return {
     fakeSuperTest : fakeSuperTest,
+    assertExpectCalledWith : assertExpectCalledWith
     getSpy : getSpy,
+    assertFirstCalledWithValueMatching : assertFirstCalledWithValueMatching,
     expectSpy : expectSpy
   }
