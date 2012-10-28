@@ -1,3 +1,2 @@
-// create super test
-
 // pass that into entryPoint
+return require('./lib/entryPoint');
