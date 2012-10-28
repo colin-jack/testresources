@@ -48,7 +48,8 @@
     "sinon": "*",
     "coffee-script" : "*",
     "grunt-coffee": "*",
-    "grunt": "*"
+    "grunt": "*",
+    "express": "*"
   },
 
   "_npmUser": {

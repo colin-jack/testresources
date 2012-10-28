@@ -1,36 +1,29 @@
-var entryPoint = lib.require('entryPointCreator');
-var createSpyHelper = require('./createSuperTestSpyHelper');
+var resource = lib.require('entryPointCreator'),
+    express = require('express');
 
-describe('when you make a get request', function() {
-  var returnedFromGet = spyHelper = null;
+describe('when you get it to test a get request', function() {
+    it('should pass if request returns expected json', function() {
+        var app = express();
 
-  beforeEach(function() {
-    spyHelper = createSpyHelper();
-    returnedFromGet = entryPoint(spyHelper.fakeSuperTest).get('/boo');
-  });
+        app.get('/puppy', function(req, res){
+          res.send({ name: 'fido' });
+        });
 
-  it('should call super test to ask it to make the get request', function() {
-    assert.isTrue(spyHelper.getSpy.called);
-    assert.equal(spyHelper.getSpy.firstCall.args[0], '/boo');
-  });
-
-  it('should expect content-type to be JSON', function() {
-    assert(spyHelper.expectSpy.calledWith('Content-Type', /json/));
-  });
-
-  describe('when you add expectation to the get', function() {
-    var ghostie = null;
-
-    beforeEach(function() {
-      ghostie = {
-        name: "casper"
-      };
-
-      returnedFromGet.expectBody(ghostie);
+        resource(app).get('/puppy').expectBody({name: 'fido'}).end();
     });
 
-    it('should expect response to be 200 and should include body to be verified', function() {
-      spyHelper.assertExpectCalledWith(200, ghostie);
+    it('should fail if request returns different json', function() {
+        var app = express();
+
+        app.get('/puppy', function(req, res){
+          res.send({ name: 'fido' });
+        });
+
+        var validateError = function(err, res) {
+            assert.isDefined(err)
+            assert.instanceOf(err, Error);
+        }
+
+        resource(app).get('/puppy').expectBody({name: 'spot'}).end(validateError) 
     });
-  });
 });
