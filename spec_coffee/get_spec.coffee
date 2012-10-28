@@ -27,6 +27,3 @@ describe 'when you make a get request', () ->
   
     it 'should expect response to be 200 and should include body to be verified', () ->
       spyHelper.assertExpectCalledWith 200, ghostie
-
-    it 'should expect response to be json', () ->
-      spyHelper.assertFirstCalledWithValueMatching 'Content-Type', /json/

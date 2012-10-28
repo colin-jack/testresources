@@ -27,11 +27,8 @@ describe('when you make a get request', function() {
       };
       return returnedFromGet.expectBody(ghostie);
     });
-    it('should expect response to be 200 and should include body to be verified', function() {
+    return it('should expect response to be 200 and should include body to be verified', function() {
       return spyHelper.assertExpectCalledWith(200, ghostie);
-    });
-    return it('should expect response to be json', function() {
-      return spyHelper.assertFirstCalledWithValueMatching('Content-Type', /json/);
     });
   });
 });
