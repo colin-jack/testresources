@@ -1,29 +1,38 @@
 var resource = lib.require('entryPointCreator'),
-    express = require('express');
+    express = require('express'),
+    testUtil = require('./testUtil');
+
+
 
 describe('when you get it to test a get request', function() {
-    it('should pass if request returns expected json', function() {
-        var app = express();
+    describe('and resource returns cacheable json', function() {
+        var get;
 
-        app.get('/puppy', function(req, res){
-          res.send({ name: 'fido' });
+        beforeEach(function() {
+            var app = express();
+
+            app.get('/puppy', function(req, res){
+                res.header('Cache-Control', 'private, max-age=300')
+                res.send({ name: 'fido' });
+            });
+
+            get = resource(app).get('/puppy');
         });
 
-        resource(app).get('/puppy').expectBody({name: 'fido'}).end();
-    });
-
-    it('should fail if request returns different json', function() {
-        var app = express();
-
-        app.get('/puppy', function(req, res){
-          res.send({ name: 'fido' });
+        it('should pass if your expectations are correct', function() {
+            get.expectBody({name: 'fido'})
+               .expectCached("private", 5)
+               .end();
         });
 
-        var validateError = function(err, res) {
-            assert.isDefined(err)
-            assert.instanceOf(err, Error);
-        }
+        it('should fail if caching expectation is incorrect', function() {
+            get.expectCached("private", 10)
+               .end(testUtil.assertErrorRaised);
+        });
 
-        resource(app).get('/puppy').expectBody({name: 'spot'}).end(validateError) 
-    });
+        it('should fail if body expecation is incorrect', function() {
+            get.expectBody({name: 'spot'})
+               .end(testUtil.assertErrorRaised) 
+        }); 
+    })
 });
