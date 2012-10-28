@@ -1,6 +1,6 @@
 var createSpyHelper, entryPoint;
 
-entryPoint = lib.require('entryPoint');
+entryPoint = lib.require('entryPointCreator');
 
 createSpyHelper = require('./createSuperTestSpyHelper');
 

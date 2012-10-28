@@ -1,4 +1,4 @@
-entryPoint = lib.require('entryPoint')
+entryPoint = lib.require('entryPointCreator')
 createSpyHelper = require('./createSuperTestSpyHelper')
 
 describe 'when you make a get request', () ->

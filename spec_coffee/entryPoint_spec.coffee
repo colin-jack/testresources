@@ -1,4 +1,4 @@
-entryPoint = lib.require('entryPoint')
+entryPoint = lib.require('entryPointCreator')
 
 describe 'when you get the entry point', () ->
   underTest = null  
