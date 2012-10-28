@@ -1,2 +1,2 @@
 // pass that into entryPoint
-module.export = require('./lib/entryPoint');
+module.exports = require('./lib/entryPoint');
