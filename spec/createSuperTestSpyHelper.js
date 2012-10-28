@@ -1,17 +1,16 @@
-var sinon;
-
-sinon = require('sinon');
+var sinon = require('sinon');
 
 module.exports = function() {
-  var assertExpectCalledWith, assertFirstCalledWithValueMatching, expectSpy, fakeSuperTest, getSpy;
-  assertExpectCalledWith = function(key, value) {
+  var assertExpectCalledWith = function(key, value) {
     return assert(expectSpy.calledWith(key, value));
   };
-  assertFirstCalledWithValueMatching = function(key, regex) {
+
+  var assertFirstCalledWithValueMatching = function(key, regex) {
     assert.equal(expectSpy.firstCall.args[0], key);
     return assert.match(expectSpy.firstCall.args[1], regex);
   };
-  fakeSuperTest = {
+
+  var fakeSuperTest = {
     get: function() {
       return this;
     },
@@ -22,8 +21,10 @@ module.exports = function() {
       return "foo.com";
     }
   };
-  getSpy = sinon.spy(fakeSuperTest, "get");
-  expectSpy = sinon.spy(fakeSuperTest, "expect");
+  
+  var getSpy = sinon.spy(fakeSuperTest, "get");
+  var expectSpy = sinon.spy(fakeSuperTest, "expect");
+
   return {
     fakeSuperTest: fakeSuperTest,
     assertExpectCalledWith: assertExpectCalledWith,
