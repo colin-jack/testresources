@@ -1,8 +1,8 @@
 entryPoint = lib.require('entryPoint')
 sinon = require('sinon')
 
-describe 'when you ask for a get request', () ->
-  expectSpy = getSpy = null
+describe 'when you make a get request', () ->
+  returnedFromGet = expectSpy = getSpy = null
 
   beforeEach () ->
     superTest = 
@@ -13,11 +13,8 @@ describe 'when you ask for a get request', () ->
 
     getSpy = sinon.spy(superTest, "get")
     expectSpy = sinon.spy(superTest, "expect")
-
-    ghostie = 
-      name: "casper"
     
-    entryPoint(superTest).get('/boo').expect(ghostie)
+    returnedFromGet = entryPoint(superTest).get('/boo')
 
   it 'should call super test to ask it to make the get request', () ->
     assert.isTrue getSpy.called
@@ -26,5 +23,14 @@ describe 'when you ask for a get request', () ->
   it 'should expect content-type to be JSON', () ->
     assert expectSpy.calledWith 'Content-Type', 'text/json'
 
-  it 'should expect response to be 200', () ->
-    assert expectSpy.calledWith 'Content-Type', 'text/json'
+  describe 'when you add expectation to the get', () ->
+    ghostie = null
+
+    beforeEach () ->
+      ghostie = 
+        name: "casper"
+  
+      returnedFromGet.expectBody(ghostie)
+  
+    it 'should expect response to be 200', () ->
+      assert expectSpy.calledWith 200
