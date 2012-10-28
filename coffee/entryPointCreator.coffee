@@ -2,10 +2,13 @@
 module.exports = (wrappedSuperTest) ->
   return {
     get : (url) ->
-      getChain = wrappedSuperTest.get(url).expect('Content-Type', 'text/json') 
+      getChain = wrappedSuperTest.get(url).expect('Content-Type', /json/) 
       
       return {
         expectBody : (body) ->
-          getChain.expect(200, body)
+          onEnd = (err, res) ->
+            if (err) throw err;
+
+          getChain.expect(200, body).end(onEnd)
       }
   }
