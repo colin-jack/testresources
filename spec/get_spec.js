@@ -23,10 +23,10 @@ describe('when you get it to test a get request', function() {
                .end(testUtil.assertNoError(done));
         });
 
-        // it('should fail if caching expectation is incorrect', function(done) {
-        //     get.expectCached("private", 10)
-        //        .end(testUtil.assertError(done));
-        // });
+        it('should fail if caching expectation is incorrect', function(done) {
+            get.expectCached("private", 10)
+               .end(testUtil.assertError(done));
+        });
 
         it('should fail if body expecation is incorrect', function(done) {
             get.expectBody({name: 'spot'})
