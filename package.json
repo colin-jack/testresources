@@ -1,8 +1,8 @@
 {
-  "version": "0.0.74",
+  "version": "0.0.76",
 
   "name": "testresources",
-  "description": "Adds some conventions to supertest to make testing HTTP APIs quicker.",
+  "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
   "main": "index",
 
   "preferGlobal": false,
@@ -17,7 +17,7 @@
   },
 
   "dependencies": {
-    "supertest": "*",
+    "superagent": "*",
     "objectcompare" : "*",
     "async": "*",
     "underscore": "*",

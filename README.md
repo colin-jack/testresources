@@ -1,4 +1,4 @@
 # test resources
-Wraps super test making it easy to ensure an HTTP API matches conventions.
+Similiar to super test, in other words wrapping superagent to make it easy to test an HTTP API matches conventions.
 
 Currently only supports JSON.
