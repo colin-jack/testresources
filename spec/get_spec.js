@@ -26,6 +26,7 @@ describe('when you test a get request', function() {
         });
 
         it('should fail if response is not JSON');
+        it('should work if body is empty but we expected that');
 
         it('should fail if caching expectation is incorrect', function(done) {
             testBuilder
@@ -33,16 +34,17 @@ describe('when you test a get request', function() {
                .run(testUtil.assertError(done));
         });
 
-        // it('should fail if body expecation is incorrect', function(done) {
-        //     testBuilder
-        //        .expectBody({name: 'spot'})
-        //        .run(done);
-        // }); 
+        it('should fail if body expecation is incorrect', function(done) {
+            testBuilder
+               .expectGot({name: 'spot'})
+               .run(testUtil.assertError(done));
+        }); 
 
-        //  it('should fail if response code is not expected', function(done) {
-        //     testBuilder
-        //         .expectStatus(400)
-        //         .run(done);
-        // }); 
+         it('should fail if response code is not expected', function(done) {
+            testBuilder
+                .expectStatus(400)
+                .run(testUtil.assertError(done));
+        }); 
+
     })
 });
