@@ -26,18 +26,22 @@ describe('when you test a get request', function() {
 
         it('should fail if response is not JSON');
 
-        // it('should fail if caching expectation is incorrect', function(done) {
-        //     testBuilder.expectCached("private", 10)
-        //        .end(testUtil.assertError(done));
-        // });
+        it('should fail if caching expectation is incorrect', function(done) {
+            testBuilder
+                .expectCached("private", 10)
+               .assert(done);
+        });
 
-        // it('should fail if body expecation is incorrect', function(done) {
-        //     testBuilder.expectBody({name: 'spot'})
-        //        .end(testUtil.assertError(done)) 
-        // }); 
+        it('should fail if body expecation is incorrect', function(done) {
+            testBuilder
+               .expectBody({name: 'spot'})
+               .assert(done);
+        }); 
 
-        //  it('should fail if response code is not expected', function(done) {
-        //     testBuilder.expectStatus(400).end(testUtil.assertError(done)) 
-        // }); 
+         it('should fail if response code is not expected', function(done) {
+            testBuilder
+                .expectFailure(400)
+                .assert(done);
+        }); 
     })
 });
