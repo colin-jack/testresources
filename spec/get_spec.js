@@ -1,4 +1,5 @@
 var resource = lib.require('entryPointCreator'),
+    resource = lib.require('entryPointCreator'),
     express = require('express'),
     testUtil = require('./testUtil');
 
@@ -17,31 +18,31 @@ describe('when you test a get request', function() {
             testBuilder = resource(app).get('/puppy');
         });
 
-        it.only('should pass if your expectations are correct', function(done) {
+        it('should pass if your expectations are correct', function(done) {
             testBuilder
                 .expectGot({name: 'fido'})
                 .expectCached("private", 5)
-                .assert(done);
+                .run(testUtil.assertNoError(done));
         });
 
         it('should fail if response is not JSON');
 
         it('should fail if caching expectation is incorrect', function(done) {
             testBuilder
-                .expectCached("private", 10)
-               .assert(done);
+               .expectCached("private", 10)
+               .run(testUtil.assertError(done));
         });
 
-        it('should fail if body expecation is incorrect', function(done) {
-            testBuilder
-               .expectBody({name: 'spot'})
-               .assert(done);
-        }); 
+        // it('should fail if body expecation is incorrect', function(done) {
+        //     testBuilder
+        //        .expectBody({name: 'spot'})
+        //        .run(done);
+        // }); 
 
-         it('should fail if response code is not expected', function(done) {
-            testBuilder
-                .expectFailure(400)
-                .assert(done);
-        }); 
+        //  it('should fail if response code is not expected', function(done) {
+        //     testBuilder
+        //         .expectStatus(400)
+        //         .run(done);
+        // }); 
     })
 });

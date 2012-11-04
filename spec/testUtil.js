@@ -1,15 +1,16 @@
 module.exports = {
    assertError : function(done) {
         return function(err, res) {
-            assert.isDefined(err)
-            assert.instanceOf(err, Error);
+            debugger;
+            assert.isDefined(err, "Did not expect there to have been an error but got: " + err)
+            //assert.instanceOf(err, Error);
             done();
         }
     },
 
     assertNoError : function(done) {
         return function(err, res) {
-            assert.isNull(err);
+            assert.isUndefined(err);
             done();
         }
     }
