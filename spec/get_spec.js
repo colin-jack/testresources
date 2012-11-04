@@ -20,7 +20,7 @@ describe('when you test a get request', function() {
         it.only('should pass if your expectations are correct', function(done) {
             testBuilder
                 .expectGot({name: 'fido'})
-                //.expectCached("private", 5)
+                .expectCached("private", 5)
                 .assert(done);
         });
 

@@ -5,5 +5,3 @@ global.assert = require('chai').assert;
 var libNamespace = require('./../lib/namespace');
 global.lib = libNamespace;
 module.exports = libNamespace;
-
-

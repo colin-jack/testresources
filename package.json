@@ -22,7 +22,8 @@
     "async": "*",
     "underscore": "*",
     "require-namespace": "*",
-    "rules" : "*"
+    "rules" : "*",
+    "chai": "*"
   },
 
   "keywords": [
