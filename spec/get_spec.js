@@ -33,11 +33,11 @@ describe('when you test a get request', function() {
                .run(testUtil.assertError(/The cache-control value/, done));
         });
 
-        // it('should fail if body expecation is incorrect', function(done) {
-        //     testBuilder
-        //        .expectBody({name: 'spot'})
-        //        .run(testUtil.assertError(/The body looked like/, done));
-        // }); 
+        it('should fail if body expecation is incorrect', function(done) {
+            testBuilder
+               .expectBody({name: 'spot'})
+               .run(testUtil.assertError(/The body looked like/, done));
+        }); 
 
          it('should fail if response code is not expected', function(done) {
             testBuilder

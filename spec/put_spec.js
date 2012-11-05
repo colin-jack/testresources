@@ -11,14 +11,11 @@ describe('when you test a put request', function() {
 
     describe("which returns success and valid body", function() {
         beforeEach(function() {
-            app.put('/puppylove', function(req, res){
-                debugger;
-                console.log("*******************************");
+            app.put('/dogs', function(req, res){
                 res.send({ name: "spot"});
-                //res.status(900);
             });
 
-            testBuilder = resource(app).put('/puppylove', { name: "fido"});
+            testBuilder = resource(app).put('/dogs', { name: "fido"});
         });
 
         it('should pass when your expectations are correct', function(done) {
@@ -29,7 +26,7 @@ describe('when you test a put request', function() {
 
         it('should fail if body is incorrect', function(done) {
             testBuilder
-                .expectBody({ name: "spot"})
+                .expectBody({ name: "fido"})
                 .run(testUtil.assertError(/The body looked like/, done));
         });
 
