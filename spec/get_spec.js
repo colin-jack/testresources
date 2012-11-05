@@ -31,19 +31,19 @@ describe('when you test a get request', function() {
         it('should fail if caching expectation is incorrect', function(done) {
             testBuilder
                .expectCached("private", 10)
-               .run(testUtil.assertError(done));
+               .run(testUtil.assertError(/The cache-control value/, done));
         });
 
         it('should fail if body expecation is incorrect', function(done) {
             testBuilder
                .expectGot({name: 'spot'})
-               .run(testUtil.assertError(done));
+               .run(testUtil.assertError(/The body looked like/, done));
         }); 
 
          it('should fail if response code is not expected', function(done) {
             testBuilder
                 .expectStatus(400)
-                .run(testUtil.assertError(done));
+                .run(testUtil.assertError(/The status should have been 400./, done));
         }); 
 
     })
