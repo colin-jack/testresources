@@ -1,7 +1,7 @@
 module.exports = {
    assertError : function(expectedMessage, done) {
         return function(err) {
-            assert.isDefined(err, "Did not expect there to have been an error but got: " + err)
+            assert.isDefined(err, "Expected an error")
             
             if (expectedMessage instanceof RegExp) {
                 assert.match(err, expectedMessage);
@@ -16,7 +16,7 @@ module.exports = {
 
     assertNoError : function(done) {
         return function(err, res) {
-            assert.isUndefined(err);
+            assert.isUndefined(err, "Did not expect an error");
             done();
         }
     }
