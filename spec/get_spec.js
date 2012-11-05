@@ -25,7 +25,6 @@ describe('when you test a get request', function() {
                 .run(testUtil.assertNoError(done));
         });
 
-        it('should fail if response is not JSON');
         it('should work if body is empty but we expected that');
 
         it('should fail if caching expectation is incorrect', function(done) {
@@ -45,6 +44,32 @@ describe('when you test a get request', function() {
                 .expectStatus(400)
                 .run(testUtil.assertError(/The status should have been 400./, done));
         }); 
+
+        it('should fail if you expect no caching but resource is cached'); 
+
+    })
+
+    describe('and resource returns something other than JSON', function() {
+        it('should fail');
+    });
+
+    describe('and resource returns json which is not cacheable', function() {
+        var testBuilder;
+
+        beforeEach(function() {
+            var app = express();
+
+            app.get('/puppy', function(req, res){
+                res.header('Cache-Control', 'no-cache')
+                res.send({ name: 'fido' });
+            });
+
+            testBuilder = resource(app).get('/puppy');
+        });
+
+        it('should pass if your expectations are correct');
+
+        it('should fail if you expect caching cached'); 
 
     })
 });
