@@ -36,4 +36,20 @@ describe('when you test a put request', function() {
                 .run(testUtil.assertError(/The status should have been 400./, done)) 
         }); 
     });
+
+     describe("which fails with an error", function() {
+        beforeEach(function() {
+            app.put('/baddogs', function(req, res){
+                res.send(400, {});
+            });
+
+            testBuilder = resource(app).put('/baddogs', { name: "fido"});
+        });
+
+        it('should fail if you expect a body', function(done) {
+            testBuilder
+                .expectBody({ name: "spot"})
+                .run(testUtil.assertError(/The status should have been 200./, done)) ;
+        });
+    });
 });
