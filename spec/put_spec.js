@@ -31,7 +31,9 @@ describe('when you test a put request', function() {
     //        .run(testUtil.assertError(done)) 
     // }); 
 
-    //  it('should fail if response code is not expected', function(done) {
-    //     testBuilder.expectStatus(400).run(testUtil.assertError(done)) 
-    // }); 
+     it('should fail if response code is not expected', function(done) {
+        testBuilder
+            .expectStatus(400)
+            .run(testUtil.assertError(/The status should have been 400./, done)) 
+    }); 
 });
