@@ -46,9 +46,8 @@ describe('when you test a put request', function() {
             testBuilder = resource(app).put('/baddogs', { name: "fido"});
         });
 
-        it('should fail if you expect a body', function(done) {
+        it('should fail for unexpected status', function(done) {
             testBuilder
-                .expectBody({ name: "spot"})
                 .run(testUtil.assertError(/The status should have been 200./, done)) ;
         });
     });
