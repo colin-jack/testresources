@@ -24,16 +24,11 @@ describe('when you test a get request', function() {
                 .run(testUtil.assertNoError(done));
         });
 
-        it('should fail if you expect caching cached'); 
+        it('should fail if you expect caching cached', function(done) {            
+            testBuilder
+               .expectCached("private", 10)
+               .run(testUtil.assertError(/The cache-control value/, done));
 
+        })
     })
 });
-
-// request(app).get('/people/5')
-//             .expectBody(expectedBody)
-//             .expectNotCached()
-//             // .followLink("address")
-//             //     .expectBody(...)
-//             //     .expectCacheForever("publically")
-//             //     .endLink()
-//             .run(done);
