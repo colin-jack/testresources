@@ -1,7 +1,7 @@
 var resource = lib.require('entryPointCreator'),
     resource = lib.require('entryPointCreator'),
     express = require('express'),
-    testUtil = require('./testUtil');
+    testUtil = require('./../testUtil');
 
 describe('when you test a get request', function() {
     describe('and resource returns cacheable json', function() {
@@ -36,7 +36,7 @@ describe('when you test a get request', function() {
         it('should fail if body expecation is incorrect', function(done) {
             testBuilder
                .expectBody({name: 'spot'})
-               .run(testUtil.assertError(/The body looked like/, done));
+               .run(testUtil.assertError(/The body did not match/, done));
         }); 
 
          it('should fail if response code is not expected', function(done) {
@@ -52,24 +52,4 @@ describe('when you test a get request', function() {
     describe('and resource returns something other than JSON', function() {
         it('should fail');
     });
-
-    describe('and resource returns json which is not cacheable', function() {
-        var testBuilder;
-
-        beforeEach(function() {
-            var app = express();
-
-            app.get('/puppy', function(req, res){
-                res.header('Cache-Control', 'no-cache')
-                res.send({ name: 'fido' });
-            });
-
-            testBuilder = resource(app).get('/puppy');
-        });
-
-        it('should pass if your expectations are correct');
-
-        it('should fail if you expect caching cached'); 
-
-    })
 });

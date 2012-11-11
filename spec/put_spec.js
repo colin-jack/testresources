@@ -27,7 +27,7 @@ describe('when you test a put request', function() {
         it('should fail if body is incorrect', function(done) {
             testBuilder
                 .expectBody({ name: "fido"})
-                .run(testUtil.assertError(/The body looked like/, done));
+                .run(testUtil.assertError(/The body did not match/, done));
         });
 
         it('should fail if response code is not expected', function(done) {
