@@ -35,7 +35,7 @@ describe('when you test a get request containing a link', function() {
         testBuilder
             .expectNotCached()
             .followLink("address")
-                .expectBody()
+                .expectBody(address)
                 //.expectCacheForever("publically")
                 .endLink()
             .run(testUtil.assertNoError(done));
