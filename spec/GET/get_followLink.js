@@ -1,31 +1,43 @@
 var resource = lib.require('entryPointCreator'),
     resource = lib.require('entryPointCreator'),
+    getServerAddress = lib.require('getServerAddress'),
     express = require('express'),
-    testUtil = require('./../testUtil');
+    testUtil = require('./../testUtil'),
+    http = require('http');
 
-describe('when you test a get request', function() {
-    describe('and resource returns json which is not cacheable', function() {
-        var testBuilder;
+describe('when you test a get request containing a link', function() {
+    var testBuilder, address;
 
-        beforeEach(function() {
-            var app = express();
+    beforeEach(function() {
+        var app = express()
+        var server = http.createServer(app);
 
-            app.get('/puppy', function(req, res){
-                res.header('Cache-Control', 'no-cache')
-                res.send({ name: 'fido' });
-            });
+        address = { postCode: "EH12 9YY" }
 
-            testBuilder = resource(app).get('/puppy');
+        app.get('/puppy', function(req, res){
+            res.header('Cache-Control', 'no-cache');
+
+            var addressHref = getServerAddress(server, "/address/5")
+
+            res.json({ name: 'fido', address: addressHref});
         });
 
-        it('should pass if your expectations are correct', function(done) {
-            testBuilder
-                .expectNotCached()
-                .followLink("address")
-                    //.expectBody(...)
-                    //.expectCacheForever("publically")
-                    .endLink()
-                .run(testUtil.assertNoError(done));
+        app.get('/address/:id', function(req, res) {
+            res.header('Cache-Control', 'no-cache')
+
+            res.json(address);
         });
-    })
+
+        testBuilder = resource(server).get('/puppy');
+    });
+
+    it.only('should pass if your expectations are correct and you can follow the link', function(done) {
+        testBuilder
+            .expectNotCached()
+            .followLink("address")
+                .expectBody()
+                //.expectCacheForever("publically")
+                .endLink()
+            .run(testUtil.assertNoError(done));
+    });
 });
