@@ -28,6 +28,7 @@ describe('when you test a get request containing a link', function() {
         });
 
         testBuilder = resource(server).get('/puppy');
+        // testBuilder = resource(server).get('/address/5');
     });
 
     it.only('should pass if your expectations are correct and you can follow the link', function(done) {
@@ -38,5 +39,6 @@ describe('when you test a get request containing a link', function() {
                 //.expectCacheForever("publically")
                 .endLink()
             .run(testUtil.assertNoError(done));
+        // testBuilder.expectBody(address).run(testUtil.assertNoError(done));
     });
 });
