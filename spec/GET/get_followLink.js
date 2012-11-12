@@ -27,11 +27,14 @@ describe('when you test a get request containing a link', function() {
             res.json(address);
         });
 
+        debugger;
+        console.log("Running on port: " + server.port)
+
         testBuilder = resource(server).get('/puppy');
         // testBuilder = resource(server).get('/address/5');
     });
 
-    it.only('should pass if your expectations are correct and you can follow the link', function(done) {
+    it.skip('should pass if your expectations are correct and you can follow the link', function(done) {
         testBuilder
             .expectNotCached()
             .followLink("address")
