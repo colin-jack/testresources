@@ -23,7 +23,8 @@
     "underscore": "*",
     "require-namespace": "*",
     "rules" : "*",
-    "chai": "*"
+    "chai": "*",
+    "winston": "*"
   },
 
   "keywords": [
