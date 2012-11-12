@@ -1,5 +1,4 @@
 var resource = lib.require('entryPointCreator'),
-    resource = lib.require('entryPointCreator'),
     getServerAddress = lib.require('getServerAddress'),
     express = require('express'),
     testUtil = require('./../testUtil'),
