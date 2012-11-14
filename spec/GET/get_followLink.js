@@ -31,11 +31,11 @@ describe("follow link - ", function() {
             testBuilder = resource(app).get('/withLink');
         });
 
-        it.only('should pass if your expectations are correct and you can follow the link', function(done) {
+        it('should pass if your expectations are correct and you can follow the link', function(done) {
             testBuilder
                 .expectNotCached()
                  .followLink("address")
-                     .expectBody({ postCode: "EH12 9YZ" })
+                     .expectBody({ postCode: "EH12 9YY" })
                 //     //.expectCacheForever("publically")
                      .endLink()
                 .run(testUtil.assertNoError(done));
