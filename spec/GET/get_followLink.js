@@ -35,7 +35,7 @@ describe("follow link - ", function() {
             testBuilder
                 .expectNotCached()
                  .followLink("address")
-                     .expectBody({ postCode: "EH12 9YY" })
+                     .expectBody(address)
                 //     //.expectCacheForever("publically")
                      .endLink()
                 .run(testUtil.assertNoError(done));
