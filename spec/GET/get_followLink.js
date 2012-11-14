@@ -4,41 +4,41 @@ var resource = lib.require('entryPointCreator'),
     testUtil = require('./../testUtil'),
     http = require('http');
 
-describe('when you test a get request containing a link', function() {
-    var testBuilder, address;
+describe("follow link - ", function() {
+    describe('when you test a get request containing a link', function() {
+        var testBuilder, address, server;
 
-    beforeEach(function() {
-        var app = express()
-        var server = http.createServer(app);
+        beforeEach(function() {
+            var app = express()
+            server = http.createServer(app);
 
-        address = { postCode: "EH12 9YY" }
+            address = { postCode: "EH12 9YY" }
 
-        app.get('/puppy', function(req, res){
-            res.header('Cache-Control', 'no-cache');
+            app.get('/withLink', function(req, res){
+                res.header('Cache-Control', 'no-cache');
 
-            var addressHref = getServerAddress(server, "/address/5")
+                var addressHref = "/address" // getServerAddress(server,
 
-            res.json({ name: 'fido', address: addressHref});
+                res.json({ name: 'fido', address: addressHref});
+            });
+
+            app.get('/address', function(req, res) {
+                res.header('Cache-Control', 'no-cache')
+
+                res.json(address);
+            });
+
+            testBuilder = resource(app).get('/withLink');
         });
 
-        app.get('/address/:id', function(req, res) {
-            res.header('Cache-Control', 'no-cache')
-
-            res.json(address);
+        it.only('should pass if your expectations are correct and you can follow the link', function(done) {
+            testBuilder
+                .expectNotCached()
+                 .followLink("address")
+                     .expectBody({ postCode: "EH12 9YZ" })
+                //     //.expectCacheForever("publically")
+                     .endLink()
+                .run(testUtil.assertNoError(done));
         });
-
-        testBuilder = resource(server).get('/puppy');
-        // testBuilder = resource(server).get('/address/5');
-    });
-
-    it('should pass if your expectations are correct and you can follow the link', function(done) {
-        testBuilder
-            .expectNotCached()
-            .followLink("address")
-                .expectBody(address)
-                //.expectCacheForever("publically")
-                .endLink()
-            .run(testUtil.assertNoError(done));
-        // testBuilder.expectBody(address).run(testUtil.assertNoError(done));
     });
 });

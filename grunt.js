@@ -12,16 +12,9 @@ module.exports = function(grunt) {
         },
         jshint: {
             options: {
-                curly: true,
+                curly: false,
                 eqeqeq: true,
-                // immed: true,
-                // latedef: true,
-                // newcap: true,
                 noarg: true,
-                // sub: true,
-                //undef: true,
-                // boss: true,
-                // eqnull: true,
                 node: true,
                 asi: true,
                 strict: false
