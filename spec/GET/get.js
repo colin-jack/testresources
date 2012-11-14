@@ -19,26 +19,32 @@ describe("get - ", function() {
                 testBuilder = resource(app).get('/get');
             });
 
-            // it('should pass if your expectations are correct', function(done) {
-            //     testBuilder
-            //         .expectBody({name: 'fido'})
-            //         .expectCached("private", 5)
-            //         .run(testUtil.assertNoError(done));
-            // });
+            it('should pass if your expectations are correct', function(done) {
+                testBuilder
+                    .expectBody({name: 'fido'})
+                    .expectCached("private", 5)
+                    .run(testUtil.assertNoError(done));
+            });
 
-            // it('should work if body is empty but we expected that');
+            it('should work if body is empty but we expected that');
 
-            // it('should fail if caching expectation is incorrect', function(done) {
-            //     testBuilder
-            //        .expectCached("private", 10)
-            //        .run(testUtil.assertError(/The cache-control value/, done));
-            // });
+            it('should fail if caching expectation is incorrect', function(done) {
+                testBuilder
+                   .expectCached("private", 10)
+                   .run(testUtil.assertError(/The cache-control value/, done));
+            });
 
-            it('should fail if body expecation is incorrect', function(done) {
+            it('should fail if body expectation is incorrect', function(done) {
                 testBuilder
                    .expectBody({name: 'spot'})
                    .run(testUtil.assertError(/The body did not match/, done));
             }); 
+
+            it.skip('should fail if you expect it to be cached forever', function(done) {
+                testBuilder
+                    .expectCacheForever()
+                    .run(testUtil.assertError(/The body did not match/, done));
+            });
 
             it('should fail if response code is not expected', function(done) {
                 testBuilder

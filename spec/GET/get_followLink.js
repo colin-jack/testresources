@@ -17,7 +17,7 @@ describe("follow link - ", function() {
             app.get('/withLink', function(req, res){
                 res.header('Cache-Control', 'no-cache');
 
-                var addressHref = "/address" // getServerAddress(server,
+                var addressHref = "/address"; // getServerAddress(server,
 
                 res.json({ name: 'fido', address: addressHref});
             });
@@ -36,7 +36,7 @@ describe("follow link - ", function() {
                 .expectNotCached()
                  .followLink("address")
                      .expectBody(address)
-                //     //.expectCacheForever("publically")
+                     //.expectCacheForever("publically")
                      .endLink()
                 .run(testUtil.assertNoError(done));
         });
