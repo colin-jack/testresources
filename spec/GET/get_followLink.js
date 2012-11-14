@@ -5,7 +5,7 @@ var resource = lib.require('entryPointCreator'),
     http = require('http');
 
 describe("follow link - ", function() {
-    describe('when you test a get request containing a link', function() {
+    describe.skip('when you test a get request containing a link', function() {
         var testBuilder, address, server;
 
         beforeEach(function() {
@@ -34,9 +34,9 @@ describe("follow link - ", function() {
         it('should pass if your expectations are correct and you can follow the link', function(done) {
             testBuilder
                 .expectNotCached()
-                 .followLink("address")
+                .followLink("address")
                      .expectBody(address)
-                     //.expectCacheForever("publically")
+                     .expectCacheForever("publically")
                      .endLink()
                 .run(testUtil.assertNoError(done));
         });
