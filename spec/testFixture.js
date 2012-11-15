@@ -2,7 +2,7 @@
 
 global.assert = require('chai').assert;
 
-global.winston = require('winston');
+var winston = require('winston');
 winston.cli();
 winston.info("Switching to only logging errors (testFixture.js).")
 winston.level = 'error';
