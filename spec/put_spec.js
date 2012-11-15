@@ -2,7 +2,7 @@ var resource = lib.require('entryPointCreator'),
     express = require('express'),
     testUtil = require('./testUtil');
 
-describe.skip('when you test a put request', function() {
+describe('when you test a put request', function() {
     var testBuilder, app;
 
     beforeEach(function() {
