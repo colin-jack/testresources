@@ -1,5 +1,5 @@
 {
-  "version": "0.0.88",
+  "version": "0.0.89",
 
   "name": "testresources",
   "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
