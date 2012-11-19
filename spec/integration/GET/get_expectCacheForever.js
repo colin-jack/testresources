@@ -4,24 +4,25 @@ var resource = lib.require('entryPointCreator'),
     testUtil = require('./../testUtil');
 
 describe("get cache forever - ", function() {
-    describe.skip('when you test a get request and resource returns json which can be cached forever', function() {
+    describe('when you test a get request and resource returns json which can be cached for twenty years publically', function() {
         var testBuilder;
 
         beforeEach(function() {
             var app = express();
 
             app.get('/noCache', function(req, res){
-                // TOOD: Cache forever publically
-                res.header('Cache-Control', 'no-cache')
+                // TODO: Cache forever publically
+                var twentyYears = 20 * 365 * 24 * 60 * 60;
+                res.header('Cache-Control', 'public, max-age=' + twentyYears)
                 res.send({ name: 'fido' });
             });
 
             testBuilder = resource(app).get('/noCache');
         });
 
-        it('should pass if your expectations are correct', function(done) {
+        it('should pass if your expectation matches', function(done) {
             testBuilder
-                .expectCacheForever('public')
+                .expectCachedForever('public')
                 .run(testUtil.assertNoError(done));
         });
     })
