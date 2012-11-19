@@ -11,7 +11,6 @@ describe("get cache forever - ", function() {
             var app = express();
 
             app.get('/noCache', function(req, res){
-                // TODO: Cache forever publically
                 var twentyYears = 20 * 365 * 24 * 60 * 60;
                 res.header('Cache-Control', 'public, max-age=' + twentyYears)
                 res.send({ name: 'fido' });

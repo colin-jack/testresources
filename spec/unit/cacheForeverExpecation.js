@@ -15,9 +15,16 @@ describe("when passed a value with no location", function() {
     });
 });
 
-describe("when passed a value with max-age at end", function() {
+describe("when passed a value with a small max-age", function() {
+    it("should throw an error", function() {
+        var runExpectation = cacheForeverExpectationWrapper("max-age=500, public")
+        assert.throws(runExpectation, /The cache-control max-age value of \'500\' should have been larger than \'315360000\'./)
+    });
+});
+
+describe("when passed a value with a large enough max-age", function() {
     it("should not throw an error", function() {
-        var runExpectation = cacheForeverExpectationWrapper("public, max-age=5000")
+        var runExpectation = cacheForeverExpectationWrapper("public, max-age=50000000")
         assert.doesNotThrow(runExpectation)
     });
 });
