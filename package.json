@@ -27,6 +27,10 @@
     "winston": "*"
   },
 
+  "scripts": {
+    "test": "mocha -R spec spec/testFixture spec/unit --recursive & mocha -R spec spec/testFixture spec/integration --recursive"
+  },
+
   "keywords": [
     "REST",
     "RESTful",
