@@ -1,5 +1,5 @@
-var resource = lib.require('entryPointCreator'),
-    resource = lib.require('entryPointCreator'),
+var resource = testResourcesLib.require('entryPointCreator'),
+    resource = testResourcesLib.require('entryPointCreator'),
     express = require('express'),
     testUtil = require('./../testUtil');
 
@@ -19,6 +19,7 @@ describe("get no cache - ", function() {
         });
 
         it('should pass if your expectations are correct', function(done) {
+            debugger;
             testBuilder
                 .expectNotCached()
                 .run(testUtil.assertNoError(done));

@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    cacheForeverExpectation = lib.require('cacheForeverExpectation');
+    cacheForeverExpectation = testResourcesLib.require('cacheForeverExpectation');
 
 describe("when passed a value with no max-age", function() {
     it("should throw an error", function() {
@@ -24,14 +24,14 @@ describe("when passed a value with a small max-age", function() {
 
 describe("when passed a value with a large enough max-age", function() {
     it("should not throw an error", function() {
-        var runExpectation = cacheForeverExpectationWrapper("public, max-age=50000000")
+        var runExpectation = cacheForeverExpectationWrapper("public, max-age=900000000")
         assert.doesNotThrow(runExpectation)
     });
 });
 
 describe("when passed a value with a large enough max-age and location is last", function() {
     it("should not throw an error", function() {
-        var runExpectation = cacheForeverExpectationWrapper("max-age=50000000, public")
+        var runExpectation = cacheForeverExpectationWrapper("max-age=900000000, public")
         assert.doesNotThrow(runExpectation)
     });
 });

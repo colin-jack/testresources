@@ -1,5 +1,5 @@
-var resource = lib.require('entryPointCreator'),
-    resource = lib.require('entryPointCreator'),
+var resource = testResourcesLib.require('entryPointCreator'),
+    resource = testResourcesLib.require('entryPointCreator'),
     express = require('express'),
     testUtil = require('./../testUtil');
 
@@ -10,13 +10,13 @@ describe("get cache forever - ", function() {
         beforeEach(function() {
             var app = express();
 
-            app.get('/noCache', function(req, res){
+            app.get('/cacheForever', function(req, res){
                 var twentyYears = 20 * 365 * 24 * 60 * 60;
                 res.header('Cache-Control', 'public, max-age=' + twentyYears)
                 res.send({ name: 'fido' });
             });
 
-            testBuilder = resource(app).get('/noCache');
+            testBuilder = resource(app).get('/cacheForever');
         });
 
         it('should pass if your expectation matches', function(done) {

@@ -1,11 +1,11 @@
-var resource = lib.require('entryPointCreator'),
-    getServerAddress = lib.require('getServerAddress'),
+var resource = testResourcesLib.require('entryPointCreator'),
+    getServerAddress = testResourcesLib.require('getServerAddress'),
     express = require('express'),
     testUtil = require('./../testUtil'),
     http = require('http');
 
 describe("follow link - ", function() {
-    describe.skip('when you test a get request containing a link', function() {
+    describe('when you test a get request containing a link', function() {
         var testBuilder, address, server;
 
         beforeEach(function() {
@@ -23,7 +23,8 @@ describe("follow link - ", function() {
             });
 
             app.get('/address', function(req, res) {
-                res.header('Cache-Control', 'no-cache')
+                var twentyYears = 20 * 365 * 24 * 60 * 60;
+                res.header('Cache-Control', 'public, max-age=' + twentyYears)
 
                 res.json(address);
             });
@@ -36,7 +37,7 @@ describe("follow link - ", function() {
                 .expectNotCached()
                 .followLink("address")
                      .expectBody(address)
-                     .expectCacheForever("publically")
+                     .expectCachedForever("public")
                      .endLink()
                 .run(testUtil.assertNoError(done));
         });

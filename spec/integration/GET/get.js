@@ -1,5 +1,5 @@
-var resource = lib.require('entryPointCreator'),
-    resource = lib.require('entryPointCreator'),
+var resource = testResourcesLib.require('entryPointCreator'),
+    resource = testResourcesLib.require('entryPointCreator'),
     express = require('express'),
     testUtil = require('./../testUtil');
 
@@ -42,7 +42,7 @@ describe("get - ", function() {
 
             it.skip('should fail if you expect it to be cached forever', function(done) {
                 testBuilder
-                    .expectCacheForever()
+                    .expectCachedForever()
                     .run(testUtil.assertError(/The body did not match/, done));
             });
 

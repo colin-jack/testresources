@@ -1,4 +1,4 @@
-var resource = lib.require('entryPointCreator'),
+var resource = testResourcesLib.require('entryPointCreator'),
     express = require('express'),
     testUtil = require('./testUtil');
 

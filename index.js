@@ -1,6 +1,3 @@
-// global within the module
-lib = require('./lib/namespace');
+global.testResourcesLib = require('./lib/namespace');
 
-var entryPointCreator = require('./lib/entryPointCreator');
-
-module.exports = entryPointCreator;
+module.exports = require('./lib/entryPointCreator');
