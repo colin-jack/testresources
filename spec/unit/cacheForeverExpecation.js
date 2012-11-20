@@ -29,6 +29,13 @@ describe("when passed a value with a large enough max-age", function() {
     });
 });
 
+describe("when passed a value with a large enough max-age and location is last", function() {
+    it("should not throw an error", function() {
+        var runExpectation = cacheForeverExpectationWrapper("max-age=50000000, public")
+        assert.doesNotThrow(runExpectation)
+    });
+});
+
 var cacheForeverExpectationWrapper = function cacheForeverExpectationWrapper(cacheControlHeader) {
     return function() { 
         var fakeResponse = { 
