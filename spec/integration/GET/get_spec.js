@@ -1,7 +1,7 @@
-var resource = testResourcesLib.require('entryPointCreator'),
-    resource = testResourcesLib.require('entryPointCreator'),
-    express = require('express'),
-    testUtil = require('./../testUtil');
+var testresources = require('require-namespace').testresources;
+var resource = testresources.require('entryPointCreator');
+var express = require('express');
+var testUtil = require('./../testUtil');
 
 describe("get - ", function() {
     describe('when you test a get request', function() {

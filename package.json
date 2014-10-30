@@ -19,7 +19,6 @@
   "dependencies": {
     "superagent": "*",
     "objectcompare" : "*",
-    "async": "*",
     "underscore": "*",
     "require-namespace": "*",
     "rules" : "*",
@@ -66,6 +65,6 @@
   "license": "MIT",
   
   "engines": {
-    "node": ">=0.6"
+    "node": ">=0.8"
   }
 }

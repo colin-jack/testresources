@@ -1,6 +1,7 @@
-var resource = testResourcesLib.require('entryPointCreator'),
-    express = require('express'),
-    testUtil = require('./testUtil');
+var testresources = require('require-namespace').testresources;
+var resource = testresources.require('entryPointCreator');
+var express = require('express');
+var testUtil = require('./testUtil');
 
 describe('when you test a put request', function() {
     var testBuilder, app;
@@ -52,27 +53,27 @@ describe('when you test a put request', function() {
         });
     });
 
-    describe("which returns something other than JSON", function() {
-        beforeEach(function() {
-            app.put('/baddogs', function(req, res){
+    module.exports = describe("which returns something other than JSON", function () {
+        beforeEach(function () {
+            app.put('/baddogs', function (req, res) {
                 res.header["Content-Type"] = "text/html";
                 res.send("<html></html>");
             });
-
-            testBuilder = resource(app).put('/baddogs', { name: "fido"});
+            
+            testBuilder = resource(app).put('/baddogs', { name: "fido" });
         });
-
-        it.skip('should fail as JSON is default', function(done) {
+        
+        it.skip('should fail as JSON is default', function (done) {
             testBuilder
                 .expectBody("<html></html>")
-                .run(testUtil.assertError(/Expected JSON response./, done)) ;
+                .run(testUtil.assertError(/Expected JSON response./, done));
         });
-
-        it.skip('should pass if you have over-ridden expected content type', function(done) {
+        
+        it.skip('should pass if you have over-ridden expected content type', function (done) {
             testBuilder
                 .expectBody("<html></html>")
                 .expectContentType('text/html')
-                .run(testUtil.assertNoError(done)) ;
+                .run(testUtil.assertNoError(done));
         });
-    });
+    })
 });

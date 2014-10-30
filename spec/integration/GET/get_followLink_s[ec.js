@@ -1,8 +1,9 @@
-var resource = testResourcesLib.require('entryPointCreator'),
-    getServerAddress = testResourcesLib.require('getServerAddress'),
-    express = require('express'),
-    testUtil = require('./../testUtil'),
-    http = require('http');
+var testresources = require('require-namespace').testresources;
+var resource = testresources.require('entryPointCreator');
+var getServerAddress = testresources.require('getServerAddress');
+var express = require('express');
+var testUtil = require('./../testUtil');
+var http = require('http');
 
 describe("follow link - ", function() {
     describe('when you test a get request containing a link', function() {

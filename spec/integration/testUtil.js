@@ -1,3 +1,5 @@
+var assert = require('chai').assert;
+
 module.exports = {
    assertError : function(expectedMessage, done) {
         return function(err) {
