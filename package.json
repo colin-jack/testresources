@@ -1,5 +1,5 @@
 {
-  "version": "0.0.91",
+  "version": "0.0.92",
 
   "name": "testresources",
   "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
@@ -47,13 +47,9 @@
   ],
 
   "devDependencies": {
-    "longjohn": "*",
-    "chai": "*",
     "mocha": "*",
     "sinon": "*",
     "coffee-script" : "*",
-    "grunt-coffee": "*",
-    "grunt": "*",
     "express": "*"
   },
 
