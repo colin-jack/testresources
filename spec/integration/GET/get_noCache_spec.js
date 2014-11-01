@@ -19,7 +19,6 @@ describe("get no cache - ", function() {
         });
 
         it('should pass if your expectations are correct', function(done) {
-            debugger;
             testBuilder
                 .expectNotCached()
                 .run(testUtil.assertNoError(done));
