@@ -1,35 +1,29 @@
 {
   "version": "0.0.92-alpha.1",
-
   "name": "testresources",
   "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
   "main": "index",
-
   "preferGlobal": false,
-
   "author": {
     "name": "Colin Jack"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/colin-jack/testresources.git"
   },
-
   "dependencies": {
-    "superagent": "*",
-    "objectcompare" : "*",
-    "underscore": "*",
-    "require-namespace": "*",
-    "rules" : "*",
     "chai": "*",
+    "freeport": "^1.0.3",
+    "objectcompare": "*",
+    "require-namespace": "^0.3.41",
+    "rules": "*",
+    "superagent": "*",
+    "underscore": "*",
     "winston": "*"
   },
-
   "scripts": {
     "test": "mocha -R spec spec/testFixture spec/unit --recursive & mocha -R spec spec/testFixture spec/integration --recursive"
   },
-
   "keywords": [
     "REST",
     "RESTful",
@@ -45,21 +39,17 @@
     "resource oriented",
     "ROA"
   ],
-
   "devDependencies": {
     "mocha": "*",
     "sinon": "*",
-    "coffee-script" : "*",
+    "coffee-script": "*",
     "express": "*"
   },
-
   "_npmUser": {
     "name": "colin_jack",
     "email": "colin.jack@gmail.com"
   },
-
   "license": "MIT",
-  
   "engines": {
     "node": ">=0.8"
   }
