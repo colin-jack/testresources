@@ -43,7 +43,8 @@
     "mocha": "*",
     "sinon": "*",
     "coffee-script": "*",
-    "express": "*"
+    "express": "*",
+    "proxyquire":  "*"
   },
   "_npmUser": {
     "name": "colin_jack",
