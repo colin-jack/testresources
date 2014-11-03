@@ -9,4 +9,4 @@ npm-debug.log
 *.sln
 *.njsproj
 *.dll
-.ntvs*.dat
+.ntvs*.dat*
