@@ -1,5 +1,5 @@
 # test resources
-[![Build Status](https://travis-ci.org/colin-jack/testresources.png)](https://travis-ci.org/#!/colin-jack/testresources)
+[![Build Status](https://travis-ci.org/colin-jack/testResources.png)](https://travis-ci.org/#!/colin-jack/testResources)
 
 This project is an early alpha, not yet fully functional.
 

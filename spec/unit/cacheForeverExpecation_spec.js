@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
-var testresources = require('require-namespace').testresources;
-var cacheForeverExpectation = testresources.require('cacheForeverExpectation');
+var testResources = require('require-namespace').testResources;
+var cacheForeverExpectation = testResources.require('cacheForeverExpectation');
 
 describe("when passed a value with no max-age", function() {
     it("should throw an error", function() {

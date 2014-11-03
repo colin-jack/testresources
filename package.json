@@ -1,6 +1,6 @@
 {
   "version": "0.0.92-alpha.2",
-  "name": "testresources",
+  "name": "testResources",
   "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
   "main": "index",
   "preferGlobal": false,
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/colin-jack/testresources.git"
+    "url": "https://github.com/colin-jack/testResources.git"
   },
   "dependencies": {
     "chai": "*",
@@ -22,7 +22,7 @@
     "winston": "*"
   },
   "scripts": {
-    "test": "mocha -R spec spec/testFixture spec/unit --recursive & mocha -R spec spec/testFixture spec/integration --recursive"
+    "test": "mocha spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha spec/testFixture spec/integration/**/*_spec.js --recursive -b -R list"
   },
   "keywords": [
     "REST",

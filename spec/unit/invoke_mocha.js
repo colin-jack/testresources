@@ -3,19 +3,19 @@
     path = require('path');
 
 // First, you need to instantiate a Mocha instance.
-var mocha = new Mocha({ timeout: 10000 });
+var mocha = new Mocha({ timeout: 60000 });
 
 // Then, you need to use the method "addFile" on the mocha
 // object for each file.
 
 var testDirectory = __dirname;
 
-require("../testFixture");
+mocha.addFile(__dirname + "/../testFixture");
 
 // Here is an example:
 fs.readdirSync(testDirectory).filter(function (file) {
     // Only keep the .js files
-    return file.substr(-3) === '.js' && file.indexOf("closing_express_spec") !== -1;
+    return file.substr(-3) === '.js';// && file.indexOf("closing_express_spec") !== -1;
 
 }).forEach(function (file) {
     // Use the method "addFile" to add the file to mocha

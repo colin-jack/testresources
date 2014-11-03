@@ -1,5 +1,5 @@
-var testresources = require('require-namespace').testresources;
-var resource = testresources.require('entryPointCreator');
+var testResources = require('require-namespace').testResources;
+var resource = testResources.require('entryPointCreator');
 var express = require('express');
 var testUtil = require('./../testUtil');
 
