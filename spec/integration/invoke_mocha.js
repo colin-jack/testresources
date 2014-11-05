@@ -13,7 +13,7 @@ var testDirectory = __dirname;
 // Here is an example:
 fs.readdirSync(testDirectory).filter(function (file) {
     // Only keep the .js files
-    return file.indexOf("404") != -1 &&
+    return file.indexOf("put_spec") != -1 &&
            file.substr(-3) === '.js';
 
 }).forEach(function (file) {

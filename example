@@ -1,0 +1,22 @@
+// will throw if anything expected
+startServer(express).andTest(resourceTest().put('/baddogs', { name: "fido" })
+	    							.expectBody("<html></html>")
+            						.expectContentType('text/html'));
+
+Q.spawn(function * () {
+	var server;
+
+	try
+	{
+		server = yield startServer(expressApp)
+
+		yield resourceTest.sendRequest(superAgent)
+		    			  .expectBody("<html></html>")
+	            		  .expectContentType('text/html')
+	    	    		  .runAgainst(server));
+	}
+	finally {
+		server.close();
+	}
+});
+		

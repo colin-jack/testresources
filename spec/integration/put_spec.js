@@ -1,5 +1,4 @@
-var testResources = require('require-namespace').testResources;
-var resource = testResources.require('entryPointCreator');
+var resource = require('../../index');
 var express = require('express');
 var testUtil = require('./testUtil');
 
@@ -15,8 +14,13 @@ describe('when you test a put request', function() {
             app.put('/dogs', function(req, res){
                 res.send({ name: "spot"});
             });
+            
+            debugger;
+            testBuilder = resource(app).put('/dogs', { name: "fido" });
 
-            testBuilder = resource(app).put('/dogs', { name: "fido"});
+            debugger;
+
+            var port = resource.port;
         });
 
         it('should pass when your expectations are correct', function(done) {

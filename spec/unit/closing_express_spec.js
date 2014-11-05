@@ -2,23 +2,23 @@
 //var sinon = require('sinon');
 //var testResources = require('./../namespace_with_test_doubles')
 //debugger;
-//var closeExpress = testResources.require('closeExpress');
+//var expressServerCloser = testResources.require('expressServerCloser');
 
 //describe("when closing express", function () {
 //    var expressStub;
-//    var portManagerStub;
+//    var portAllocatorStub;
 
 //    beforeEach(function () {
-//        portManagerStub = { releasePort: function () { } };
-//        portManagerStub.releasePort = sinon.spy(portManagerStub, 'releasePort');
+//        portAllocatorStub = { releasePort: function () { } };
+//        portAllocatorStub.releasePort = sinon.spy(portAllocatorStub, 'releasePort');
         
 //        debugger;
-//        testResources.portManager = portManagerStub;
+//        testResources.portAllocator = portAllocatorStub;
 
 //        expressStub = { close: function () { }, address: function () { } };
 //        expressStub.close = sinon.spy(expressStub, "close");
         
-//        closeExpress(expressStub);
+//        expressServerCloser(expressStub);
 
 //        testResources.removeTestDoubles();
 //    });
@@ -28,6 +28,6 @@
 //    });
 
 //    it("should release the port", function () {
-//        assert.isTrue(portManagerStub.releasePort.calledOnce)
+//        assert.isTrue(portAllocatorStub.releasePort.calledOnce)
 //    });
 //});

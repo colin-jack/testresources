@@ -19,10 +19,11 @@
     "rules": "*",
     "superagent": "*",
     "underscore": "*",
-    "winston": "*"
+    "winston": "*",
+    "q": "*"
   },
   "scripts": {
-    "test": "mocha spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha spec/testFixture spec/integration/**/*_spec.js --recursive -b -R list"
+    "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/testFixture spec/integration/**/*_spec.js --recursive -b -R list"
   },
   "keywords": [
     "REST",
@@ -52,6 +53,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.11.13",
+    "engineStrict": "true"
   }
 }
