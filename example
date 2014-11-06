@@ -1,7 +1,5 @@
 // will throw if anything expected
-startServer(express).andTest(resourceTest().put('/baddogs', { name: "fido" })
-	    							.expectBody("<html></html>")
-            						.expectContentType('text/html'));
+startServer(express).runTest(resourceTest()).close();
 
 Q.spawn(function * () {
 	var server;

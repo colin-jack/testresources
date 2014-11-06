@@ -1,7 +1,9 @@
-//require('longjohn')
+var chai = require('chai');
+chai.use(require('chai-as-promised'));
 
-debugger;
+module.exports = {
+    assert: chai.assert,
+    testResources: require('./../lib/namespace')
+}
 
-// creates a namespace 'testResources' but allowing us to replace modules with test doubles.
-require('./../lib/namespace');
 

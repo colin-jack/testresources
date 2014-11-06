@@ -45,7 +45,7 @@
     "sinon": "*",
     "coffee-script": "*",
     "express": "*",
-    "proxyquire":  "*"
+    "chai-as-promised": "*"
   },
   "_npmUser": {
     "name": "colin_jack",
