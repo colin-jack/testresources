@@ -43,9 +43,7 @@ describe('when you test a put request', function () {
                                                 .run(server), /The body did not match./);
     });
 
-    //it('should fail if response code is not expected', function (done) {
-    //    assert.throws(function () {
-    //        testApi.runTest(resourceTest(request).expectStatus(400));
-    //    }, "The status should have been 400.");
-    //}); 
+    it('should fail if response code is not expected', function () {
+        return assert.isRejected(resourceTest(request).expectStatus(400).run(server), "The status should have been 400.");
+    }); 
 });
