@@ -23,7 +23,7 @@
     "q": "*"
   },
   "scripts": {
-    "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/testFixture spec/integration/**/*_spec.js --recursive -b -R list"
+    "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"
   },
   "keywords": [
     "REST",
