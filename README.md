@@ -3,7 +3,7 @@
 
 Designed to be used with [superagent](https://github.com/visionmedia/superagent), makes it easy to write simple assertions about HTTP responses:
 
-'''js
+```js
 describe('when you test a get request', function() {
         describe('and resource returns cacheable json', function () {
             var server;
@@ -34,4 +34,4 @@ describe('when you test a get request', function() {
             });
     })
 })
-'''
+```
