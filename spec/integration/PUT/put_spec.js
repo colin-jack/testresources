@@ -1,11 +1,11 @@
-var resourceTest = require('../../index');
-var fixture = require('../testFixture')
+var resourceTest = require('../../../index');
+var fixture = require('../../testFixture')
 var assert = fixture.assert;
 
 var express = require('express');
 var superAgent = require('superagent');
 
-var testUtil = require('./testUtil');
+var testUtil = require('./../testUtil');
 var startServer = fixture.testResources.startServerFluent;
 
 describe('when you test a put request', function () {
@@ -26,8 +26,8 @@ describe('when you test a put request', function () {
         request = superAgent.put('/dogs')
     });
         
-    after(function () {
-        server.close();
+    after(function (done) {
+        server.close(done);
     })
         
     it('should pass if your expectations are correct', function () {
