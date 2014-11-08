@@ -32,50 +32,49 @@ describe('when you test a get request', function() {
             server.close();
         })
             
-        it('should pass if your expectations are correct', function () {
-            return resourceTest(request)
-                            .expectBody({ name: 'fido' })
-                            .expectCached("private", 5)
-                            .run(server)
-        });
+        //it('should pass if your expectations are correct', function () {
+        //    return resourceTest(request)
+        //                    .expectBody({ name: 'fido' })
+        //                    .expectCached("private", 5)
+        //                    .run(server)
+        //});
             
-        it('should pass if your expectations are correct', function () {
-            return resourceTest(request)
-                            .expectBody({ name: 'fido' })
-                            .expectCached("private", 5)
-                            .run(server)
-        });
+        //it('should pass if your expectations are correct', function () {
+        //    return resourceTest(request)
+        //                    .expectBody({ name: 'fido' })
+        //                    .expectCached("private", 5)
+        //                    .run(server)
+        //});
 
-        it('should pass if your expectations are correct2', function (done) {
-            resourceTest(request)
-                            .expectBody({ name: 'fido' })
-                            .expectCached("private", 5)
-                            .run(server, done)
-        });
+        //it('should pass if your expectations are correct2', function (done) {
+        //    resourceTest(request)
+        //                    .expectBody({ name: 'fido' })
+        //                    .expectCached("private", 5)
+        //                    .run(server, done)
+        //});
 
-        it('should fail if caching expectation is incorrect', function () {
-            return assert.isRejected(resourceTest(request)
-                                                .expectCached("private", 10)
-                                                .run(server));
-        });
+        //it('should fail if caching expectation is incorrect', function () {
+        //    return assert.isRejected(resourceTest(request)
+        //                                        .expectCached("private", 10)
+        //                                        .run(server));
+        //});
 
-        it('should fail if body expectation is incorrect', function () {
-            return assert.isRejected(resourceTest(request)
-                                                .expectBody({ name: 'spot' })
-                                                .run(server));
-        }); 
+        //it('should fail if body expectation is incorrect', function () {
+        //    return assert.isRejected(resourceTest(request)
+        //                                        .expectBody({ name: 'spot' })
+        //                                        .run(server));
+        //}); 
 
-        it('should fail if response code is not expected', function () {
-            return assert.isRejected(resourceTest(request)
-                                                .expectStatus(400)
-                                                .run(server), /The status should have been 400./);
-        });
+        //it('should fail if response code is not expected', function () {
+        //    return assert.isRejected(resourceTest(request)
+        //                                        .expectStatus(400)
+        //                                        .run(server), /The status should have been 400./);
+        //});
             
-        it.skip('should fail if you expect it to be cached forever', function () {
-            debugger;
-            var api = resourceTest(request).expectCachedForever();
-            return assert.isRejected(api
-                                                .run(server), /the body did not match/);
+        it('should fail if you expect it to be cached forever', function () {
+            return assert.isRejected(resourceTest(request)
+                                                .expectCachedForever("private")
+                                                .run(server), /The cache-control max-age value of '300' should have been larger than '315360000'./);
         });
             
         it.skip('should work if body is empty but we expected that', function () {
