@@ -1,46 +1,56 @@
-var testResources = require('require-namespace').testResources;
-var resource = testResources.require('entryPointCreator');
-var getServerAddress = testResources.require('getServerAddress');
+var resourceTest = require('../../../index');
+var fixture = require('../../testFixture')
+var assert = fixture.assert;
+
 var express = require('express');
+var superAgent = require('superagent');
+
 var testUtil = require('./../testUtil');
-var http = require('http');
+var startServer = fixture.testResources.startServerFluent;
+var getServerAddress = fixture.testResources.getServerAddress;
 
-describe("follow link - ", function() {
-    describe('when you test a get request containing a link', function() {
-        var testBuilder, address, server;
+describe('when you test a get request containing a link', function () {
+    var server;
+    var request;
+    var address;
 
-        beforeEach(function() {
-            var app = express()
-            server = http.createServer(app);
-
-            address = { postCode: "EH12 9YY" }
-
-            app.get('/withLink', function(req, res){
-                res.header('Cache-Control', 'no-cache');
-
-                var addressHref = "/address"; // getServerAddress(server,
-
-                res.json({ name: 'fido', address: addressHref});
-            });
-
-            app.get('/address', function(req, res) {
-                var twentyYears = 20 * 365 * 24 * 60 * 60;
-                res.header('Cache-Control', 'public, max-age=' + twentyYears)
-
-                res.json(address);
-            });
-
-            testBuilder = resource(app).get('/withLink');
+    before(function () {
+        var app = express();
+        
+        address = { postCode: "EH12 9YY" }
+        
+        app.get('/withLink', function (req, res) {
+            res.header('Cache-Control', 'no-cache');
+            
+            var addressesUrl = getServerAddress(server.server, "/address");
+            
+            res.send({ name: 'fido', address: addressesUrl });
         });
-
-        it('should pass if your expectations are correct and you can follow the link', function(done) {
-            testBuilder
-                .expectNotCached()
+        
+        app.get('/address', function (req, res) {
+            var twentyYears = 20 * 365 * 24 * 60 * 60;
+            res.header('Cache-Control', 'public, max-age=' + twentyYears)
+                
+            res.send(address);
+        });
+        
+        server = startServer(app);
+    })
+    
+    beforeEach(function () {
+        request = superAgent.get('/withLink');
+    });
+    
+    after(function () {
+        server.close();
+    })
+    
+    it('should pass if your expectations are correct and you can follow the link', function (done) {
+        return resourceTest(request)
                 .followLink("address")
                      .expectBody(address)
                      .expectCachedForever("public")
                      .endLink()
-                .run(testUtil.assertNoError(done));
-        });
+                .run(server);
     });
 });

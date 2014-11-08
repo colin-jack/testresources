@@ -10,12 +10,12 @@ var mocha = new Mocha({
 // Then, you need to use the method "addFile" on the mocha
 // object for each file.
 
-var testDirectory = __dirname + "/PUT";
+var testDirectory = __dirname + "/GET";
 
 // Here is an example:
 fs.readdirSync(testDirectory).filter(function (file) {
     // Only keep the .js files
-    return file.indexOf("400") != -1 &&
+    return file.indexOf("get_followLink_spec") != -1 &&
            file.substr(-3) === '.js';
 
 }).forEach(function (file) {
