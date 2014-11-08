@@ -7,7 +7,7 @@ describe("start server fluent interface", function () {
     var underTest;
 
     beforeEach(function () {
-        var fakeExpress = {};
+        var fakeExpress = {  };
         underTest = startServerFluent(fakeExpress);
     });
        
@@ -25,9 +25,19 @@ describe("start server fluent interface", function () {
 
     describe("when you call run test but pass invalid test definition", function () {
         it("should throw an error", function () {
-            debugger;
             assert.throws(function () { underTest.runTest({}, null) }, "The test definition must have a runAgainst method. Please see documentation.")
         });
     });
 
+    describe("when you call run test but pass invalid test definition", function () {
+        it("should throw an error", function () {
+            assert.throws(function () { underTest.runTest({}, null) }, "The test definition must have a runAgainst method. Please see documentation.")
+        });
+    });
+    
+    describe("when you do not provide the express instance to configure.", function () {
+        it("should throw an error", function () {
+            assert.throws(function () { startServerFluent(null) }, "You must specify the express app to use. This app must not yet be listening.")
+        });
+    });
 })

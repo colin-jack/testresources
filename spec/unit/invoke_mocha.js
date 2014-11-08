@@ -26,7 +26,6 @@ fs.readdirSync(testDirectory).filter(function (file) {
 // Now, you can run the tests.
 mocha.run(function (failures) {
     process.on('exit', function () {
-        debugger;
         process.exit(failures);
     });
 });
