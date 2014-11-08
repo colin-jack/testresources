@@ -45,9 +45,18 @@ describe('when you test a get request containing a link', function () {
         server.close();
     })
     
-    it('should pass if your expectations are correct and you can follow the link', function (done) {
+    it('should pass if you specify correct assertions for a link in response', function () {
         return resourceTest(request)
                 .followLink("address")
+                     .expectBody(address)
+                     .expectCachedForever("public")
+                     .endLink()
+                .run(server);
+    });
+
+    it.skip('should pass if you specify correct assertions for a relative URL link in response', function () {
+        return resourceTest(request)
+                .followLink("addressRelative")
                      .expectBody(address)
                      .expectCachedForever("public")
                      .endLink()
