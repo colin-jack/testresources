@@ -8,33 +8,44 @@ var superAgent = require('superagent');
 var testUtil = require('./testUtil');
 var startServer = fixture.testResources.startServerFluent;
 
-describe("put - ", function () {
-    describe('when you test a put request', function () {
-        var server;
-        var request;
+describe('when you test a put request', function () {
+    var server;
+    var request;
         
-        before(function () {
-            var app = express();
+    before(function () {
+        var app = express();
             
-            app.put('/dogs', function (req, res) {
-                res.send({ name: 'fido' });
-            });
+        app.put('/dogs', function (req, res) {
+            res.send({ name: 'fido' });
+        });
             
-            server = startServer(app);
-        })
+        server = startServer(app);
+    })
         
-        beforeEach(function () {
-            request = superAgent.put('/dogs')
-        });
-        
-        after(function () {
-            server.close();
-        })
-        
-        it('should pass if your expectations are correct', function (done) {
-            resourceTest(request)
-                            .expectBody({ name: 'fido' })
-                            .run(server, done)
-        });
+    beforeEach(function () {
+        request = superAgent.put('/dogs')
     });
+        
+    after(function () {
+        server.close();
+    })
+        
+    it('should pass if your expectations are correct', function () {
+        return resourceTest(request)
+                        .expectBody({ name: 'fido' })
+                        .run(server)
+    });
+
+    
+    it('should fail if body is incorrect', function () {
+        return assert.isRejected(resourceTest(request)
+                                                .expectBody({ name: "mike" })
+                                                .run(server), /The body did not match./);
+    });
+
+    //it('should fail if response code is not expected', function (done) {
+    //    assert.throws(function () {
+    //        testApi.runTest(resourceTest(request).expectStatus(400));
+    //    }, "The status should have been 400.");
+    //}); 
 });

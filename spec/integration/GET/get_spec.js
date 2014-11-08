@@ -33,11 +33,18 @@ describe("get - ", function() {
                 server.close();
             })
             
-            it('should pass if your expectations are correct', function (done) {
-                resourceTest(request)
+            it('should pass if your expectations are correct', function () {
+                return resourceTest(request)
                                 .expectBody({ name: 'fido' })
                                 .expectCached("private", 5)
-                                .run(server, done)
+                                .run(server)
+            });
+            
+            it('should pass if your expectations are correct', function () {
+                return resourceTest(request)
+                                .expectBody({ name: 'fido' })
+                                .expectCached("private", 5)
+                                .run(server)
             });
 
             it('should pass if your expectations are correct2', function (done) {
@@ -59,18 +66,18 @@ describe("get - ", function() {
                                                     .run(server));
             }); 
 
+            it('should fail if response code is not expected', function () {
+                return assert.isRejected(resourceTest(request)
+                                                    .expectStatus(400)
+                                                    .run(server), /The status should have been 400./);
+            });
+            
             it.skip('should fail if you expect it to be cached forever', function () {
                 debugger;
                 var api = resourceTest(request).expectCachedForever();
                 return assert.isRejected(api
                                                     .run(server), /the body did not match/);
             });
-
-            it('should fail if response code is not expected', function () {
-                return assert.isRejected(resourceTest(request)
-                                                    .expectStatus(400)
-                                                    .run(server), /The status should have been 400./);
-            }); 
             
             it.skip('should work if body is empty but we expected that', function () {
             });
