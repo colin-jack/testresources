@@ -1,6 +1,6 @@
 {
     "version": "0.0.93-alpha.1",
-    "name": "testResources",
+    "name": "testresources",
     "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
     "main": "index",
     "preferGlobal": false,
