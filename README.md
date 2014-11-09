@@ -1,5 +1,5 @@
 # test resources
-[![Build Status](https://travis-ci.org/colin-jack/testResources.png)](https://travis-ci.org/#!/colin-jack/testResources)
+[![Build Status](https://travis-ci.org/colin-jack/testresources.svg?branch=master)](https://travis-ci.org/colin-jack/testresources)
 
 Designed to be used with [superagent](https://github.com/visionmedia/superagent), makes it easy to write simple assertions about HTTP responses:
 
