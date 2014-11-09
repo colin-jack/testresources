@@ -1,59 +1,59 @@
 {
-  "version": "0.0.92-alpha.2",
-  "name": "testResources",
-  "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
-  "main": "index",
-  "preferGlobal": false,
-  "author": {
-    "name": "Colin Jack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/colin-jack/testResources.git"
-  },
-  "dependencies": {
-    "chai": "*",
-    "freeport": "^1.0.3",
-    "objectcompare": "*",
-    "require-namespace": "^0.3.41",
-    "rules": "*",
-    "superagent": "*",
-    "underscore": "*",
-    "winston": "*",
-    "q": "*"
-  },
-  "scripts": {
-    "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"
-  },
-  "keywords": [
-    "REST",
-    "RESTful",
-    "express",
-    "superagent",
-    "request",
-    "supertest",
-    "tdd",
-    "bdd",
-    "http",
-    "test",
-    "testing",
-    "resource oriented",
-    "ROA"
-  ],
-  "devDependencies": {
-    "mocha": "*",
-    "sinon": "*",
-    "coffee-script": "*",
-    "express": "*",
-    "chai-as-promised": "*"
-  },
-  "_npmUser": {
-    "name": "colin_jack",
-    "email": "colin.jack@gmail.com"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=0.11.13",
-    "engineStrict": "true"
-  }
+    "version": "0.0.93-alpha.1",
+    "name": "testResources",
+    "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
+    "main": "index",
+    "preferGlobal": false,
+    "author": {
+        "name": "Colin Jack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/colin-jack/testResources.git"
+    },
+    "dependencies": {
+        "chai": "*",
+        "freeport": "^1.0.3",
+        "objectcompare": "*",
+        "require-namespace": "^0.3.41",
+        "rules": "*",
+        "superagent": "*",
+        "underscore": "*",
+        "winston": "*",
+        "q": "*"
+    },
+    "scripts": {
+        "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"
+    },
+    "keywords": [
+        "REST",
+        "RESTful",
+        "express",
+        "superagent",
+        "request",
+        "supertest",
+        "tdd",
+        "bdd",
+        "http",
+        "test",
+        "testing",
+        "resource oriented",
+        "ROA"
+    ],
+    "devDependencies": {
+        "mocha": "*",
+        "sinon": "*",
+        "coffee-script": "*",
+        "express": "*",
+        "chai-as-promised": "*"
+    },
+    "_npmUser": {
+        "name": "colin_jack",
+        "email": "colin.jack@gmail.com"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.11.13",
+        "engineStrict": "true"
+    }
 }
