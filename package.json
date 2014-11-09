@@ -1,5 +1,5 @@
 {
-    "version": "0.0.93-alpha.1",
+    "version": "0.0.93-alpha.2",
     "name": "testresources",
     "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
     "main": "index",
@@ -17,7 +17,10 @@
         "objectcompare": "*",
         "require-namespace": "^0.3.41",
         "rules": "*",
+
+        "express": "*",
         "superagent": "*",
+
         "underscore": "*",
         "winston": "*",
         "q": "*"
@@ -44,7 +47,7 @@
         "mocha": "*",
         "sinon": "*",
         "coffee-script": "*",
-        "express": "*",
+
         "chai-as-promised": "*"
     },
     "_npmUser": {
