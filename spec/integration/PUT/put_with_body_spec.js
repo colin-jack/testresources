@@ -4,49 +4,40 @@ var assert = fixture.assert;
 
 var express = require('express');
 var superAgent = require('superagent');
+var bodyparser = require('body-parser');
 
-var testUtil = require('./../testUtil');
 var startServer = fixture.testResources.startTestServer;
 
 describe('when you test a put request', function () {
-    var server;
-    var request;
+    var testServer, request;
         
     before(function () {
         var app = express();
+        app.use(bodyparser.json());
             
         app.put('/dogs', function (req, res) {
-            res.send({ name: 'fido' });
+            res.status(201).send(req.body);
         });
             
         return startServer(app).then(function (runningServer) {
-            server = runningServer;
+            testServer = runningServer;
         });
     })
         
     beforeEach(function () {
-        request = superAgent.put(server.fullUrl('/dogs'));
+        request = superAgent
+                        .put(testServer.fullUrl('/dogs'))
+                        .send({ name: 'fido' });
     });
         
     after(function (done) {
-        server.close(done);
+        testServer.close(done);
     })
         
     it('should pass if your expectations are correct', function () {
         return resourceTest(request)
+                        .expectStatus(201)
                         .expectBody({ name: 'fido' })
-                        .run(server)
+                        .run(testServer)
     });
-    
-    it('should fail if body is incorrect', function () {
-        return assert.isRejected(
-                    resourceTest(request).expectBody({ name: "mike" }).run(server), 
-                    /The body did not match./);
-    });
-
-    it('should fail if response code is not expected', function () {
-        return assert.isRejected(
-                        resourceTest(request).expectStatus(400).run(server), 
-                        "The status should have been 400.");
-    }); 
 });

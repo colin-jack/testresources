@@ -4,34 +4,37 @@
 Designed to be used with [superagent](https://github.com/visionmedia/superagent), makes it easy to write simple assertions about HTTP responses:
 
 ```js
-describe('when you test a get request', function() {
-        describe('and resource returns cacheable json', function () {
-            var server;
-            var request;
+describe('when you test a put request', function () {
+    var testServer, request;
+        
+    before(function () {
+        var app = express();
+        app.use(bodyparser.json());
             
-            before(function () {
-                var app = express();
-                
-                app.get('/get', function (req, res) {
-                    res.header('Cache-Control', 'private, max-age=300')
-                    res.send({ name: 'fido' });
-                });
-                
-                server = startServer(app);
-
-                request = superAgent.get('/get')
-            })
+        app.put('/dogs', function (req, res) {
+            res.status(201).send(req.body); // echoing back request body
+        });
             
-            after(function (done) {
-                server.close(done);
-            })
-            
-            it('should pass if your expectations are correct', function () {
-                return resourceTest(request)
-                                .expectBody({ name: 'fido' })
-                                .expectCached("private", 5)
-                                .run(server)
-            });
+        return startServer(app).then(function (runningServer) {
+            testServer = runningServer;
+        });
     })
-})
+        
+    beforeEach(function () {
+        request = superAgent
+                        .put(testServer.fullUrl('/dogs'))
+                        .send({ name: 'fido' });
+    });
+        
+    after(function (done) {
+        testServer.close(done);
+    })
+        
+    it('should pass if your expectations are correct', function () {
+        return resourceTest(request)
+                        .expectStatus(201)
+                        .expectBody({ name: 'fido' })
+                        .run(testServer)
+    });
+});
 ```

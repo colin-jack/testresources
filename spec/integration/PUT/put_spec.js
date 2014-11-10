@@ -5,7 +5,6 @@ var assert = fixture.assert;
 var express = require('express');
 var superAgent = require('superagent');
 
-var testUtil = require('./../testUtil');
 var startServer = fixture.testResources.startTestServer;
 
 describe('when you test a put request', function () {
