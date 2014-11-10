@@ -5,12 +5,10 @@ var assert = fixture.assert;
 var express = require('express');
 var superAgent = require('superagent');
 
-var testUtil = require('./../testUtil');
-var startServer = fixture.testResources.startServerFluent;
-var getServerAddress = fixture.testResources.getServerAddress;
+var startServer = fixture.testResources.startTestServer;
 
 describe('when you test a get request containing a link', function () {
-    var server;
+    var testServer;
     var request;
     var address;
 
@@ -22,7 +20,8 @@ describe('when you test a get request containing a link', function () {
         app.get('/withLink', function (req, res) {
             res.header('Cache-Control', 'no-cache');
             
-            var addressesUrl = getServerAddress(server.server, "/address");
+            //var addressesUrl = getServerAddress(testServer.server, "/address");
+            var addressesUrl = testServer.fullUrl("/address");
             
             res.send({ name: 'fido', address: addressesUrl });
         });
@@ -34,24 +33,27 @@ describe('when you test a get request containing a link', function () {
             res.send(address);
         });
         
-        server = startServer(app);
+        return startServer(app).then(function (runningServer) {
+                                        testServer = runningServer;
+                                     });
     })
     
     beforeEach(function () {
-        request = superAgent.get('/withLink');
+        request = superAgent.get(testServer.fullUrl('/withLink'));
     });
     
     after(function () {
-        server.close();
+        testServer.close();
     })
     
     it('should pass if you specify correct assertions for a link in response', function () {
+        debugger;
         return resourceTest(request)
                 .followLink("address")
                      .expectBody(address)
                      .expectCachedForever("public")
                      .endLink()
-                .run(server);
+                .run(testServer);
     });
 
     it.skip('should pass if you specify correct assertions for a relative URL link in response', function () {
@@ -60,6 +62,6 @@ describe('when you test a get request containing a link', function () {
                      .expectBody(address)
                      .expectCachedForever("public")
                      .endLink()
-                .run(server);
+                .run(testServer);
     });
 });

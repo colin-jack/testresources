@@ -47,6 +47,7 @@
         "mocha": "*",
         "sinon": "*",
         "coffee-script": "*",
+        "body-parser": "*",
 
         "chai-as-promised": "*"
     },

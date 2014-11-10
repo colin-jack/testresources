@@ -4,8 +4,7 @@ var assert = fixture.assert;
 
 var express = require('express');
 
-var testUtil = require('./../testUtil');
-var startServer = fixture.testResources.startServerFluent;
+var startServer = fixture.testResources.startTestServer;
 var closeExpressServer = fixture.testResources.closeExpressServer;
 
 var Q = require('q');
@@ -16,10 +15,8 @@ describe('when given a listening express server', function () {
     before(function (done) {
         var app = express();
 
-        serverWrapper = startServer(app);
-
         Q.spawn(function * () {
-            yield * serverWrapper.ensureServerRunning();
+            serverWrapper = yield startServer(app);
 
             expressServer = serverWrapper.server;
 
@@ -30,12 +27,10 @@ describe('when given a listening express server', function () {
     })
 
     it('should close correctly', function () {
-        debugger;
         assert.isNull(expressServer.address());
     });
 
     it('should unsert server', function () {
-        debugger;
         assert.isUndefined(expressServer.server);
     });
 });

@@ -6,10 +6,10 @@ var express = require('express');
 var superAgent = require('superagent');
 
 var testUtil = require('./../testUtil');
-var startServer = fixture.testResources.startServerFluent;
+var startServer = fixture.testResources.startTestServer;
 
 describe('when you test a get request and resource returns json which is not cacheable', function() {
-    var server;
+    var testServer;
     var request;
     
     before(function () {
@@ -20,26 +20,28 @@ describe('when you test a get request and resource returns json which is not cac
             res.send({ name: 'fido' });
         });
         
-        server = startServer(app);
+        return startServer(app).then(function (runningServer) {
+            testServer = runningServer;
+        });
     })
     
     beforeEach(function () {
-        request = superAgent.get('/noCache');
+        request = superAgent.get(testServer.fullUrl('/noCache'));
     });
     
     after(function () {
-        server.close();
+        testServer.close();
     })
 
     it('should pass if your expectations are correct', function() {
         return resourceTest(request)
                             .expectNotCached()
-                            .run(server)
+                            .run(testServer)
     });
     
     it('should fail if you expect caching cached', function () {
         return assert.isRejected(resourceTest(request)
                                                 .expectCached("private", 10)
-                                                .run(server), /The cache-control value/);
+                                                .run(testServer), /The cache-control value/);
     });
 })

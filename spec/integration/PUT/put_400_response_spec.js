@@ -6,7 +6,7 @@ var express = require('express');
 var superAgent = require('superagent');
 
 var testUtil = require('./../testUtil');
-var startServer = fixture.testResources.startServerFluent;
+var startServer = fixture.testResources.startTestServer;
 
 describe('when you test a put request', function () {
     var server;
@@ -19,11 +19,13 @@ describe('when you test a put request', function () {
             res.status(400).end();
         });
         
-        server = startServer(app);
+        return startServer(app).then(function (runningServer) {
+            server = runningServer;
+        });
     })
     
     beforeEach(function () {
-        request = superAgent.put('/baddogs')
+        request = superAgent.put(server.fullUrl('/baddogs'));
     });
     
     after(function (done) {

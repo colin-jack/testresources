@@ -5,11 +5,10 @@ var assert = fixture.assert;
 var express = require('express');
 var superAgent = require('superagent');
 
-var testUtil = require('./../testUtil');
-var startServer = fixture.testResources.startServerFluent;
+var startServer = fixture.testResources.startTestServer;
 
 describe('when you test a get request and resource returns json which can be cached for twenty years publically', function () {
-    var server;
+    var testServer;
     var request;
     
     before(function () {
@@ -21,20 +20,22 @@ describe('when you test a get request and resource returns json which can be cac
             res.send({ name: 'fido' });
         });
         
-        server = startServer(app);
+        return startServer(app).then(function (runningServer) {
+                                        testServer = runningServer;
+                                     });
     })
     
     beforeEach(function () {
-        request = superAgent.get('/cacheForever');
+        request = superAgent.get(testServer.fullUrl('/cacheForever'));
     });
     
     after(function () {
-        server.close();
+        testServer.close();
     })
     
     it('should pass if your expectation matches', function () {
         return resourceTest(request)
                             .expectCachedForever('public')
-                            .run(server)
+                            .run(testServer)
     });
 });

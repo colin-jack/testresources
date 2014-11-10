@@ -10,8 +10,6 @@ var mocha = new Mocha({ timeout: 10000 });
 
 var testDirectory = __dirname;
 
-mocha.addFile(__dirname + "/../testFixture");
-
 // Here is an example:
 fs.readdirSync(testDirectory).filter(function (file) {
     // Only keep the .js files
