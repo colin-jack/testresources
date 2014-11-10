@@ -1,5 +1,5 @@
 {
-    "version": "0.0.93-alpha.2",
+    "version": "0.0.93-alpha.3",
     "name": "testresources",
     "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
     "main": "index",
@@ -12,7 +12,6 @@
         "url": "https://github.com/colin-jack/testResources.git"
     },
     "dependencies": {
-        "chai": "*",
         "freeport": "^1.0.3",
         "objectcompare": "*",
         "require-namespace": "^0.3.41",
@@ -49,6 +48,7 @@
         "coffee-script": "*",
         "body-parser": "*",
 
+        "chai": "*",
         "chai-as-promised": "*"
     },
     "_npmUser": {
