@@ -1,18 +1,20 @@
 # test resources
 [![Build Status](https://travis-ci.org/colin-jack/testresources.svg?branch=master)](https://travis-ci.org/colin-jack/testresources)
 
-Designed to be used with [superagent](https://github.com/visionmedia/superagent), makes it easy to write simple assertions about HTTP responses:
+Designed to be used with [superagent](https://github.com/visionmedia/superagent) and [koa](http://koajs.com/), makes it easy to write simple assertions about HTTP responses:
 
 ```js
 describe('when you test a put request', function () {
     var testServer, request;
         
     before(function () {
-        var app = express();
-        app.use(bodyparser.json());
-            
-        app.put('/dogs', function (req, res) {
-            res.status(201).send(req.body); // echoing back request body
+        var app = koa();
+        app.use(bodyParser());
+        app.use(router(app));
+        
+        app.put('/dogs', function * () {
+            this.response.body = this.request.body;
+            this.status = 201;
         });
             
         return startServer(app).then(function (runningServer) {
