@@ -1,10 +1,8 @@
 var resourceTest = require('../../../index');
-var fixture = require('../../testFixture')
+var fixture = require('./../integrationTestFixture')
 var assert = fixture.assert;
 
-var express = require('express');
 var superAgent = require('superagent');
-var bodyparser = require('body-parser');
 
 var startServer = fixture.testResources.startTestServer;
 
@@ -12,11 +10,11 @@ describe('when you test a put request', function () {
     var testServer, request;
         
     before(function () {
-        var app = express();
-        app.use(bodyparser.json());
-            
-        app.put('/dogs', function (req, res) {
-            res.status(201).send(req.body);
+        var app = fixture.getKoaApp();
+        
+        app.put('/dogs', function * () {
+            this.response.body = this.request.body;
+            this.status = 201;
         });
             
         return startServer(app).then(function (runningServer) {

@@ -1,8 +1,7 @@
 var resourceTest = require('../../../index');
-var fixture = require('../../testFixture')
+var fixture = require('./../integrationTestFixture')
 var assert = fixture.assert;
 
-var express = require('express');
 var superAgent = require('superagent');
 
 var startServer = fixture.testResources.startTestServer;
@@ -13,11 +12,11 @@ describe('when you test a get request', function() {
         var request;
             
         before(function () {
-            var app = express();
+            var app = fixture.getKoaApp();
                 
-            app.get('/get', function (req, res) {
-                res.header('Cache-Control', 'private, max-age=300')
-                res.send({ name: 'fido' });
+            app.get('/get', function * () {
+                this.response.set('Cache-Control', 'private, max-age=300')
+                this.response.body = { name: 'fido' };
             });
                
             // we are using chai-as-promise and this method returns a promise so mocha

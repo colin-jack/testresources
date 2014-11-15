@@ -2,7 +2,7 @@ var resourceTest = require('../../../index');
 var fixture = require('../../testFixture')
 var assert = fixture.assert;
 
-var express = require('express');
+var koa = require('koa');
 
 var startServer = fixture.testResources.startTestServer;
 var closeExpressServer = fixture.testResources.closeExpressServer;
@@ -13,7 +13,7 @@ describe('when given a listening express server', function () {
     var serverWrapper, expressServer;
 
     before(function (done) {
-        var app = express();
+        var app = koa();
 
         Q.spawn(function * () {
             serverWrapper = yield startServer(app);

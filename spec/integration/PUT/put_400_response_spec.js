@@ -1,31 +1,31 @@
 ﻿var resourceTest = require('../../../index');
-var fixture = require('../../testFixture')
+var fixture = require('./../integrationTestFixture')
 var assert = fixture.assert;
 
-var express = require('express');
 var superAgent = require('superagent');
 
-var testUtil = require('./../testUtil');
 var startServer = fixture.testResources.startTestServer;
 
-describe('when you test a put request', function () {
+describe('when you test a put request that returns a 400 response', function () {
     var server;
     var request;
     
     before(function () {
-        var app = express();
+        var app = fixture.getKoaApp();
         
-        app.put('/baddogs', function (req, res) {
-            res.status(400).end();
+        app.put('/baddogs', function * () {
+            this.response.status = 400;
         });
-        
+
         return startServer(app).then(function (runningServer) {
             server = runningServer;
         });
     })
     
     beforeEach(function () {
-        request = superAgent.put(server.fullUrl('/baddogs'));
+        request = superAgent
+                        .put(server.fullUrl('/baddogs'))
+                        .send({ name: "fido" });
     });
     
     after(function (done) {

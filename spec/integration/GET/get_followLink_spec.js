@@ -1,8 +1,7 @@
 var resourceTest = require('../../../index');
-var fixture = require('../../testFixture')
+var fixture = require('./../integrationTestFixture')
 var assert = fixture.assert;
 
-var express = require('express');
 var superAgent = require('superagent');
 
 var startServer = fixture.testResources.startTestServer;
@@ -13,24 +12,24 @@ describe('when you test a get request containing a link', function () {
     var address;
 
     before(function () {
-        var app = express();
+        var app = fixture.getKoaApp();
         
         address = { postCode: "EH12 9YY" }
         
-        app.get('/withLink', function (req, res) {
-            res.header('Cache-Control', 'no-cache');
+        app.get('/withLink', function * () {
+            this.response.set('Cache-Control', 'no-cache');
             
             //var addressesUrl = getServerAddress(testServer.server, "/address");
             var addressesUrl = testServer.fullUrl("/address");
             
-            res.send({ name: 'fido', address: addressesUrl });
+            this.response.body = { name: 'fido', address: addressesUrl };
         });
         
-        app.get('/address', function (req, res) {
+        app.get('/address', function * () {
             var twentyYears = 20 * 365 * 24 * 60 * 60;
-            res.header('Cache-Control', 'public, max-age=' + twentyYears)
+            this.response.set('Cache-Control', 'public, max-age=' + twentyYears)
                 
-            res.send(address);
+            this.response.body = address;
         });
         
         return startServer(app).then(function (runningServer) {

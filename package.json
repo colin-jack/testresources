@@ -1,63 +1,84 @@
 {
-    "version": "0.0.93-alpha.3",
-    "name": "testresources",
-    "description": "Adds some conventions to superagent to make testing HTTP APIs quicker.",
-    "main": "index",
-    "preferGlobal": false,
-    "author": {
-        "name": "Colin Jack"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/colin-jack/testResources.git"
-    },
-    "dependencies": {
-        "freeport": "^1.0.3",
-        "objectcompare": "*",
-        "require-namespace": "^0.3.41",
-        "rules": "*",
-
-        "express": "*",
-        "superagent": "*",
-
-        "underscore": "*",
-        "winston": "*",
-        "q": "*"
-    },
-    "scripts": {
-        "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"
-    },
-    "keywords": [
-        "REST",
-        "RESTful",
-        "express",
-        "superagent",
-        "request",
-        "supertest",
-        "tdd",
-        "bdd",
-        "http",
-        "test",
-        "testing",
-        "resource oriented",
-        "ROA"
-    ],
-    "devDependencies": {
-        "mocha": "*",
-        "sinon": "*",
-        "coffee-script": "*",
-        "body-parser": "*",
-
-        "chai": "*",
-        "chai-as-promised": "*"
-    },
-    "_npmUser": {
-        "name": "colin_jack",
-        "email": "colin.jack@gmail.com"
-    },
-    "license": "MIT",
-    "engines": {
-        "node": ">=0.11.13",
-        "engineStrict": "true"
+  "version": "0.0.93-alpha.3",
+  "name": "testresources",
+  "description": "Adds some conventions to superagent to make testing HTTP APIs running ont top of koa quicker.",
+  "main": "index",
+  "preferGlobal": false,
+  "author": {
+    "name": "Colin Jack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colin-jack/testResources.git"
+  },
+  "dependencies": {
+    "freeport": "^1.0.3",
+    "koa": "*",
+    "objectcompare": "*",
+    "q": "^2.0.2",
+    "require-namespace": "^0.3.41",
+    "rules": "*",
+    "superagent": "*",
+    "underscore": "*",
+    "winston": "*"
+  },
+  "scripts": {
+    "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"
+  },
+  "keywords": [
+    "REST",
+    "RESTful",
+    "koa",
+    "superagent",
+    "request",
+    "supertest",
+    "tdd",
+    "bdd",
+    "http",
+    "test",
+    "testing",
+    "resource oriented",
+    "ROA"
+  ],
+  "devDependencies": {
+    "koa-bodyparser": "*",
+    "koa-logger": "*",
+    "koa-router": "*",
+    "mocha": "*",
+    "sinon": "*",
+    "coffee-script": "*",
+    "body-parser": "*",
+    "chai": "*",
+    "chai-as-promised": "*"
+  },
+  "_npmUser": {
+    "name": "colin_jack",
+    "email": "colin.jack@gmail.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.11.13",
+    "engineStrict": "true"
+  },
+  "gitHead": "26c64bf1e0990d583c01ae71da781f26c926bec5",
+  "bugs": {
+    "url": "https://github.com/colin-jack/testResources/issues"
+  },
+  "homepage": "https://github.com/colin-jack/testResources",
+  "_id": "testresources@0.0.93-alpha.3",
+  "_shasum": "354805a84e6a0db157b73fb4c026cf99a93c575d",
+  "_from": "testresources@0.0.93-alpha.3",
+  "_npmVersion": "2.0.0",
+  "maintainers": [
+    {
+      "name": "colin_jack",
+      "email": "colin.jack@gmail.com"
     }
+  ],
+  "dist": {
+    "shasum": "354805a84e6a0db157b73fb4c026cf99a93c575d",
+    "tarball": "http://registry.npmjs.org/testresources/-/testresources-0.0.93-alpha.3.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/testresources/-/testresources-0.0.93-alpha.3.tgz"
 }

@@ -1,8 +1,7 @@
 var resourceTest = require('../../../index');
-var fixture = require('../../testFixture')
+var fixture = require('./../integrationTestFixture')
 var assert = fixture.assert;
 
-var express = require('express');
 var superAgent = require('superagent');
 
 var startServer = fixture.testResources.startTestServer;
@@ -12,14 +11,14 @@ describe('when you test a get request and resource returns json which can be cac
     var request;
     
     before(function () {
-        var app = express();
+        var app = fixture.getKoaApp();
         
-        app.get('/cacheForever', function (req, res) {
+        app.get('/cacheForever', function * (next) {
             var twentyYears = 20 * 365 * 24 * 60 * 60;
-            res.header('Cache-Control', 'public, max-age=' + twentyYears)
-            res.send({ name: 'fido' });
+            this.response.set('Cache-Control', 'public, max-age=' + twentyYears)
+            this.response.body = { name: 'fido' };
         });
-        
+
         return startServer(app).then(function (runningServer) {
                                         testServer = runningServer;
                                      });
