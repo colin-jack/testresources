@@ -1,15 +1,15 @@
-var assert = require('chai').assert;
-var testResources = require('require-namespace').testResources;
-var cacheForeverExpectation = testResources.require('cacheForeverExpectation');
+var fixture = require('./../testFixture');
+var assert = fixture.assert;
+var cacheForeverExpectation = fixture.testResources.cacheForeverExpectation;
 
-describe("when passed a value with no max-age", function() {
+describe("when passed a response with no max-age", function() {
     it("should throw an error", function() {
         var runExpectation = cacheForeverExpectationWrapper("public,")
         assert.throws(runExpectation, /The cache-control value \'public,\' should have contained a max-age./)
     });
 });
 
-describe("when passed a value with no location", function() {
+describe("when passed a response with no location in cache control header but expect public", function() {
     it("should throw an error", function() {
         var runExpectation = cacheForeverExpectationWrapper(",max-age=5000")
         assert.throws(runExpectation, /The cache-control value \',max-age=5000\' should have matched/)
@@ -39,12 +39,13 @@ describe("when passed a value with a large enough max-age and location is last",
 
 var cacheForeverExpectationWrapper = function cacheForeverExpectationWrapper(cacheControlHeader) {
     return function() { 
-        var fakeResponse = { 
-            headers: {
-                'cache-control': cacheControlHeader
+        var fakeResponse = {
+            get: function (header) {
+                debugger;
+                if (header === 'cache-control') return cacheControlHeader;
             }
-        };
-
+        }
+        
         cacheForeverExpectation("public", fakeResponse) 
     }
 }
