@@ -1,7 +1,7 @@
 {
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "name": "testresources",
-  "description": "Adds some conventions to superagent to make testing HTTP APIs running on top of koa quicker.",
+  "description": "Adds fluent interface which, with help from superagent, makes testing HTTP resources simpler.",
   "main": "index",
   "preferGlobal": false,
   "author": {
