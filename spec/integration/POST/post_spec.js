@@ -15,6 +15,7 @@ describe('when you test a post request', function () {
             
         app.post('/doghome', function * () {
             this.response.body = this.request.body;
+            this.response.set('location', server.fullUrl('/doghome/5'));
             this.response.status = 201;
         });
             
@@ -36,6 +37,7 @@ describe('when you test a post request', function () {
     it('should pass if your expectations are correct', function () {
         return resourceTest(request)
                         .expectStatus(201)
+                        .expectLocation(server.fullUrl('/doghome/5'))
                         .expectBody({ name: 'fido' })
                         .run(server)
     });
@@ -50,5 +52,9 @@ describe('when you test a post request', function () {
     it('should fail if response code is not expected', function () {
         return assert.isRejected(resourceTest(request).expectStatus(200).run(server), 
                     "The status should have been 200.");
+    });
+
+    it('should fail if location is not as expected', function () {
+        return assert.isRejected(resourceTest(request).expectStatus(201).expectLocation(server.fullUrl('/clowns/5')).run(server), /The location value/);
     }); 
 });

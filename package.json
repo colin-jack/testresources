@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "name": "testresources",
   "description": "Adds fluent interface which, with help from superagent, makes testing HTTP resources simpler.",
   "main": "index",
@@ -14,13 +14,14 @@
   "dependencies": {
     "freeport": "^1.0.3",
     "koa": "*",
-    "objectcompare": "*",
+    "objectcompare": "^0.2.0",
     "q": "^2.0.2",
     "require-namespace": "^0.3.41",
-    "rules": "*",
+    "rules": "^0.6.52",
     "superagent": "*",
     "underscore": "*",
-    "winston": "*"
+    "winston": "*",
+    "valid-url": "*"
   },
   "scripts": {
     "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"
